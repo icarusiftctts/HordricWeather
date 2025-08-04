@@ -216,28 +216,51 @@ class NotificationService {
       final temp = weatherData['main']['temp'].round();
       final description = weatherData['weather'][0]['description'];
       final cityName = weatherData['name'] ?? 'Votre ville';
+      final humidity = weatherData['main']['humidity'];
+      final windSpeed = (weatherData['wind']['speed'] * 3.6).round();
+      final feelsLike = weatherData['main']['feels_like'].round();
 
       const AndroidNotificationDetails androidPlatformChannelSpecifics =
           AndroidNotificationDetails(
         'lockscreen_weather',
         'Météo Écran de Verrouillage',
         channelDescription: 'Affichage météo sur l\'écran de verrouillage',
-        importance: Importance.low,
-        priority: Priority.low,
+        importance: Importance.high,
+        priority: Priority.high,
         icon: '@mipmap/ic_launcher',
         ongoing: true,
         autoCancel: false,
-        showWhen: false,
+        showWhen: true,
         visibility: NotificationVisibility.public,
+        fullScreenIntent: false,
+        category: AndroidNotificationCategory.status,
+        ticker: 'Météo mise à jour',
+        enableLights: true,
+        enableVibration: false,
+        playSound: false,
       );
 
-      const NotificationDetails platformChannelSpecifics =
-          NotificationDetails(android: androidPlatformChannelSpecifics);
+      const DarwinNotificationDetails iOSPlatformChannelSpecifics =
+          DarwinNotificationDetails(
+        presentAlert: true,
+        presentBadge: false,
+        presentSound: false,
+        interruptionLevel: InterruptionLevel.passive,
+      );
+
+      const NotificationDetails platformChannelSpecifics = NotificationDetails(
+        android: androidPlatformChannelSpecifics,
+        iOS: iOSPlatformChannelSpecifics,
+      );
+
+      String detailedBody = '$description\n'
+          'Ressenti: ${feelsLike}°C • Humidité: $humidity%\n'
+          'Vent: ${windSpeed} km/h';
 
       await _notificationsPlugin.show(
         3,
-        '$temp°C - $cityName',
-        description,
+        '🌤️ $temp°C - $cityName',
+        detailedBody,
         platformChannelSpecifics,
       );
     } catch (e) {

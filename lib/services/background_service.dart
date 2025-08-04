@@ -207,6 +207,41 @@ class BackgroundWeatherService {
     }
   }
 
+  static void startLockScreenNotifications() {
+    // Démarrer un timer pour afficher la météo sur l'écran de verrouillage
+    Timer.periodic(const Duration(minutes: 15), (timer) async {
+      try {
+        final prefs = await SharedPreferences.getInstance();
+        final weatherDataString = prefs.getString('background_weather_data');
+
+        if (weatherDataString != null) {
+          final weatherData = json.decode(weatherDataString);
+          await NotificationService.showLockScreenWeatherNotification(
+              weatherData);
+        }
+      } catch (e) {
+        print('Erreur lors de l\'affichage sur l\'écran de verrouillage: $e');
+      }
+    });
+
+    // Affichage immédiat
+    _showInitialLockScreenNotification();
+  }
+
+  static Future<void> _showInitialLockScreenNotification() async {
+    try {
+      // Récupérer les données météo actuelles
+      final weatherData = await getCurrentWeatherData();
+      if (weatherData != null) {
+        await NotificationService.showLockScreenWeatherNotification(
+            weatherData);
+      }
+    } catch (e) {
+      print(
+          'Erreur lors de l\'affichage initial sur l\'écran de verrouillage: $e');
+    }
+  }
+
   static void dispose() {
     cancelAllTasks();
   }

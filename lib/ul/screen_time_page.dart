@@ -373,6 +373,20 @@ class _ScreenTimePageState extends State<ScreenTimePage>
   }
 
   Widget _buildMainTimeCard(Map<String, String> advice, int totalMinutes) {
+    // Formatage du temps en minutes et heures
+    String timeDisplay;
+    if (totalMinutes < 60) {
+      timeDisplay = '${totalMinutes}min';
+    } else {
+      final hours = totalMinutes ~/ 60;
+      final remainingMinutes = totalMinutes % 60;
+      if (remainingMinutes == 0) {
+        timeDisplay = '${hours}h';
+      } else {
+        timeDisplay = '${hours}h ${remainingMinutes}min';
+      }
+    }
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(25),
@@ -419,7 +433,7 @@ class _ScreenTimePageState extends State<ScreenTimePage>
 
           // Temps total
           Text(
-            '${advice['totalHours']}h',
+            timeDisplay,
             style: TextStyle(
               fontSize: 48,
               fontWeight: FontWeight.w300,
@@ -460,6 +474,25 @@ class _ScreenTimePageState extends State<ScreenTimePage>
   }
 
   Widget _buildAppUsageCard(String appName, int minutes) {
+    // Formatage du temps d'utilisation
+    String timeDisplay;
+    String detailTime;
+
+    if (minutes < 60) {
+      timeDisplay = '${minutes}min';
+      detailTime = '${minutes} minutes utilisées';
+    } else {
+      final hours = minutes ~/ 60;
+      final remainingMinutes = minutes % 60;
+      if (remainingMinutes == 0) {
+        timeDisplay = '${hours}h';
+        detailTime = '${hours}h utilisée';
+      } else {
+        timeDisplay = '${hours}h ${remainingMinutes}min';
+        detailTime = '${hours}h ${remainingMinutes}min utilisées';
+      }
+    }
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -475,7 +508,7 @@ class _ScreenTimePageState extends State<ScreenTimePage>
               color: Colors.white.withOpacity(0.2),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(Icons.smartphone, color: Colors.white, size: 24),
+            child: Icon(_getAppIcon(appName), color: Colors.white, size: 24),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -492,7 +525,7 @@ class _ScreenTimePageState extends State<ScreenTimePage>
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  '${(minutes / 60).toStringAsFixed(1)}h utilisée',
+                  detailTime,
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.white70,
@@ -502,7 +535,7 @@ class _ScreenTimePageState extends State<ScreenTimePage>
             ),
           ),
           Text(
-            '${minutes}min',
+            timeDisplay,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -512,6 +545,27 @@ class _ScreenTimePageState extends State<ScreenTimePage>
         ],
       ),
     );
+  }
+
+  IconData _getAppIcon(String appName) {
+    switch (appName.toLowerCase()) {
+      case 'hordricweather':
+        return Icons.wb_sunny;
+      case 'chrome':
+        return Icons.language;
+      case 'whatsapp':
+        return Icons.chat;
+      case 'instagram':
+        return Icons.camera_alt;
+      case 'youtube':
+        return Icons.play_circle_fill;
+      case 'messages':
+        return Icons.message;
+      case 'camera':
+        return Icons.camera;
+      default:
+        return Icons.smartphone;
+    }
   }
 
   Widget _buildWeeklyChart() {

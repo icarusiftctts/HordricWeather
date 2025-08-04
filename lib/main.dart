@@ -33,6 +33,9 @@ void main() async {
   // Initialiser le service de conseils quotidiens
   await DailyAdviceService.initialize();
 
+  // Démarrer l'affichage météo sur l'écran de verrouillage
+  BackgroundWeatherService.startLockScreenNotifications();
+
   // Configuration de la barre de statut
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(

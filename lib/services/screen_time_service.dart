@@ -21,9 +21,30 @@ class ScreenTimeService {
     try {
       await _loadTodayUsage();
       _startHourlyNotifications();
+
+      // Simuler des données d'exemple pour tester
+      await _addExampleData();
+
       print('Service de suivi du temps d\'écran initialisé');
     } catch (e) {
       print('Erreur lors de l\'initialisation du suivi: $e');
+    }
+  }
+
+  // Méthode pour ajouter des données d'exemple
+  static Future<void> _addExampleData() async {
+    if (_appUsageToday.isEmpty) {
+      // Ajouter des données d'exemple pour tester
+      _appUsageToday = {
+        'HordricWeather': 45,
+        'Chrome': 120,
+        'WhatsApp': 85,
+        'Instagram': 65,
+        'YouTube': 95,
+        'Messages': 25,
+        'Camera': 15,
+      };
+      await _saveTodayUsage();
     }
   }
 
@@ -110,9 +131,9 @@ class ScreenTimeService {
 
   static Future<void> _sendHourlyReport() async {
     final totalMinutes = getTotalScreenTimeToday();
-    final topApps = getTopAppsToday(3);
+    final topApps = getTopAppsToday(5); // Augmenter à 5 apps
     final advice = _getPersonalizedAdvice(totalMinutes, topApps);
-    final userName = UserService.getUserName();
+    final userName = await UserService.getUserName();
 
     // Créer un titre personnalisé
     String personalizedTitle = userName != null && userName.isNotEmpty
@@ -124,29 +145,73 @@ class ScreenTimeService {
         ? '$userName, voici votre bilan'
         : 'Voici votre bilan';
 
+    // Affichage en minutes et heures
+    String timeDisplay;
+    if (totalMinutes < 60) {
+      timeDisplay = '${totalMinutes}min';
+    } else {
+      final hours = totalMinutes ~/ 60;
+      final remainingMinutes = totalMinutes % 60;
+      if (remainingMinutes == 0) {
+        timeDisplay = '${hours}h';
+      } else {
+        timeDisplay = '${hours}h ${remainingMinutes}min';
+      }
+    }
+
     String report =
-        '$personalizedGreeting :\n\nTemps d\'écran: ${(totalMinutes / 60).toStringAsFixed(1)}h aujourd\'hui\n\n$advice';
+        '$personalizedGreeting :\n\n📱 Temps d\'écran total: $timeDisplay aujourd\'hui\n\n$advice';
 
     if (topApps.isNotEmpty) {
-      report += '\n\nApplications les plus utilisées:\n';
-      for (var app in topApps) {
-        final hours = (app['minutes'] as int) / 60;
-        if (hours >= 1) {
-          report += '• ${app['name']}: ${hours.toStringAsFixed(1)}h\n';
+      report += '\n\n📊 Applications utilisées:\n';
+      for (int i = 0; i < topApps.length; i++) {
+        var app = topApps[i];
+        final appMinutes = app['minutes'] as int;
+        final appName = app['name'] as String;
+
+        String appTimeDisplay;
+        if (appMinutes < 60) {
+          appTimeDisplay = '${appMinutes}min';
         } else {
-          report += '• ${app['name']}: ${app['minutes']}min\n';
+          final appHours = appMinutes ~/ 60;
+          final appRemainingMinutes = appMinutes % 60;
+          if (appRemainingMinutes == 0) {
+            appTimeDisplay = '${appHours}h';
+          } else {
+            appTimeDisplay = '${appHours}h ${appRemainingMinutes}min';
+          }
         }
+
+        String emoji = '';
+        switch (i) {
+          case 0:
+            emoji = '🥇 ';
+            break;
+          case 1:
+            emoji = '🥈 ';
+            break;
+          case 2:
+            emoji = '🥉 ';
+            break;
+          default:
+            emoji = '📱 ';
+        }
+
+        report += '$emoji$appName: $appTimeDisplay\n';
       }
+    } else {
+      report +=
+          '\n\n✨ Aucune utilisation d\'application enregistrée aujourd\'hui !';
     }
 
     // Ajouter un message d'encouragement personnalisé
     if (userName != null && userName.isNotEmpty) {
       if (totalMinutes < 120) {
-        report += '\n\nContinuez comme ça $userName ! 💪';
+        report += '\n\n💪 Continuez comme ça $userName !';
       } else if (totalMinutes < 240) {
-        report += '\n\nVous pouvez y arriver $userName ! 🌟';
+        report += '\n\n🌟 Vous pouvez y arriver $userName !';
       } else {
-        report += '\n\nPrenez soin de vous $userName ! 🤗';
+        report += '\n\n🤗 Prenez soin de vous $userName !';
       }
     }
 

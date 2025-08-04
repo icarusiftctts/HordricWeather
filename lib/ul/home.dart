@@ -486,11 +486,31 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   size: 16,
                 ),
                 const SizedBox(width: 4),
-                Text(
-                  location,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white.withOpacity(0.8),
+                GestureDetector(
+                  onTap: () async {
+                    // Permettre de retourner à la localisation actuelle
+                    if (location != 'Position actuelle' &&
+                        location != 'Lomé, Togo') {
+                      await _getCurrentLocationWeather();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('📍 Localisation actuelle mise à jour'),
+                          backgroundColor: Colors.green,
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+                    }
+                  },
+                  child: Text(
+                    location,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white.withOpacity(0.8),
+                      decoration: location != 'Position actuelle' &&
+                              location != 'Lomé, Togo'
+                          ? TextDecoration.underline
+                          : TextDecoration.none,
+                    ),
                   ),
                 ),
               ],
