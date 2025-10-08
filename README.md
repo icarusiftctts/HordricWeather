@@ -1,8 +1,10 @@
 # HordricWeather ☀️
 
+![Hacktoberfest 2025](https://img.shields.io/badge/Hacktoberfest-2025-orange?style=for-the-badge&logo=digitalocean)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
+
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![Flutter](https://img.shields.io/badge/Flutter-3.32.8-02569B?logo=flutter)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Platform](https://img.shields.io/badge/platform-Android-brightgreen.svg)
 
 **Votre compagnon météo intelligent, gratuit et sans publicité !**
