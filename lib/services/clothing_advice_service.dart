@@ -16,31 +16,31 @@ class ClothingAdviceService {
     // Conseils basés sur la température
     if (temperature >= 30) {
       outfit = 'Vêtements légers, shorts, t-shirt, sandales';
-      emoji = '🩱';
+      emoji = 'summer';
       tip = 'N\'oubliez pas la crème solaire et un chapeau !';
     } else if (temperature >= 25) {
       outfit = 'Vêtements d\'été, robe légère ou t-shirt et pantalon';
-      emoji = '👕';
+      emoji = 'tshirt';
       tip = 'Parfait pour une promenade ou une terrasse !';
     } else if (temperature >= 20) {
       outfit = 'Vêtements mi-saison, chemise ou pull léger';
-      emoji = '👔';
+      emoji = 'shirt';
       tip = 'Idéal pour le travail ou une sortie en ville.';
     } else if (temperature >= 15) {
       outfit = 'Pull ou veste légère, pantalon long';
-      emoji = '🧥';
+      emoji = 'jacket';
       tip = 'Une veste au cas où la température baisse.';
     } else if (temperature >= 10) {
       outfit = 'Veste chaude, écharpe recommandée';
-      emoji = '🧣';
+      emoji = 'scarf';
       tip = 'Pensez aux couches pour vous adapter facilement.';
     } else if (temperature >= 5) {
       outfit = 'Manteau, gants, bonnet';
-      emoji = '🧤';
+      emoji = 'gloves';
       tip = 'Couvrez les extrémités pour éviter le froid.';
     } else {
       outfit = 'Manteau d\'hiver, gants épais, bonnet chaud';
-      emoji = '🥶';
+      emoji = 'winter';
       tip = 'Habillez-vous chaudement, évitez les sorties prolongées.';
     }
 
@@ -113,23 +113,23 @@ class ClothingAdviceService {
       activities.addAll([
         {
           'activity': 'Pique-nique',
-          'emoji': '🧺',
+          'emoji': 'picnic',
           'location': 'Parc ou jardin',
         },
-        {'activity': 'Promenade', 'emoji': '🚶', 'location': 'Centre-ville'},
+        {'activity': 'Promenade', 'emoji': 'walk', 'location': 'Centre-ville'},
         {
           'activity': 'Sport extérieur',
-          'emoji': '🏃',
+          'emoji': 'sport',
           'location': 'Stade ou parc',
         },
       ]);
     } else if (weatherCondition.contains('rain')) {
       activities.addAll([
-        {'activity': 'Cinéma', 'emoji': '🎬', 'location': 'Centre commercial'},
-        {'activity': 'Musée', 'emoji': '🏛️', 'location': 'Centre culturel'},
+        {'activity': 'Cinéma', 'emoji': 'cinema', 'location': 'Centre commercial'},
+        {'activity': 'Musée', 'emoji': 'museum', 'location': 'Centre culturel'},
         {
           'activity': 'Lecture',
-          'emoji': '📚',
+          'emoji': 'book',
           'location': 'Café ou bibliothèque',
         },
       ]);
@@ -137,31 +137,31 @@ class ClothingAdviceService {
       activities.addAll([
         {
           'activity': 'Shopping',
-          'emoji': '🛍️',
+          'emoji': 'shop',
           'location': 'Centre commercial',
         },
         {
           'activity': 'Spa/détente',
-          'emoji': '🧘',
+          'emoji': 'relax',
           'location': 'Centre de bien-être',
         },
-        {'activity': 'Cuisine', 'emoji': '👨‍🍳', 'location': 'À la maison'},
+        {'activity': 'Cuisine', 'emoji': 'cooking', 'location': 'À la maison'},
       ]);
     } else {
       activities.addAll([
         {
           'activity': 'Visite culturelle',
-          'emoji': '🏛️',
+          'emoji': 'culture',
           'location': 'Monuments locaux',
         },
         {
           'activity': 'Café entre amis',
-          'emoji': '☕',
+          'emoji': 'coffee',
           'location': 'Café du quartier',
         },
         {
           'activity': 'Marché local',
-          'emoji': '🥕',
+          'emoji': 'market',
           'location': 'Marché de la ville',
         },
       ]);

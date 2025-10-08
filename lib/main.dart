@@ -4,7 +4,6 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'services/notification_service.dart';
 import 'services/background_service.dart';
 import 'services/weather_widget_service.dart';
-import 'services/screen_time_service.dart';
 import 'services/daily_advice_service.dart';
 import 'services/user_service.dart';
 import 'ul/app_initializer.dart';
@@ -26,9 +25,6 @@ void main() async {
 
   // Initialiser le widget
   await WeatherWidgetService.initializeWidget();
-
-  // Initialiser le suivi du temps d'écran
-  await ScreenTimeService.initialize();
 
   // Initialiser le service de conseils quotidiens
   await DailyAdviceService.initialize();

@@ -70,17 +70,17 @@ class AirQualityService {
   static String _getQualityEmoji(int aqi) {
     switch (aqi) {
       case 1:
-        return '🟢';
+        return 'Bon';
       case 2:
-        return '🟡';
+        return 'Moyen';
       case 3:
-        return '🟠';
+        return 'Mediocre';
       case 4:
-        return '🔴';
+        return 'Mauvais';
       case 5:
-        return '🟣';
+        return 'Tres mauvais';
       default:
-        return '⚪';
+        return 'Inconnu';
     }
   }
 

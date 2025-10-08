@@ -78,9 +78,33 @@ class _WelcomeState extends State<Welcome> with TickerProviderStateMixin {
     });
 
     try {
+      print('Tentative d\'obtention de la localisation actuelle...');
+      
+      // Vérifier d'abord les permissions avant d'essayer
+      bool hasPermission = await LocationService.checkLocationPermission();
+      if (!hasPermission) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text(
+              'Permissions de localisation requises. Veuillez autoriser l\'accès à votre position dans les paramètres.',
+            ),
+            backgroundColor: Colors.orange,
+            action: SnackBarAction(
+              label: 'Paramètres',
+              textColor: Colors.white,
+              onPressed: () async {
+                await LocationService.openAppSettings();
+              },
+            ),
+          ),
+        );
+        return;
+      }
+
       final locationData = await LocationService.getCurrentLocationWeather();
 
       if (locationData != null) {
+        print('Localisation obtenue avec succès, navigation vers Home...');
         // Naviguer vers la page d'accueil avec les données de géolocalisation
         Navigator.push(
           context,
@@ -92,20 +116,30 @@ class _WelcomeState extends State<Welcome> with TickerProviderStateMixin {
           ),
         );
       } else {
-        // Afficher un message d'erreur
+        // Afficher un message d'erreur plus spécifique
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-                'Impossible d\'obtenir votre position. Vérifiez vos permissions de localisation.'),
+          SnackBar(
+            content: const Text(
+              'Impossible d\'obtenir votre position. Vérifiez que le GPS est activé et réessayez.',
+            ),
             backgroundColor: Colors.red,
+            action: SnackBarAction(
+              label: 'Paramètres',
+              textColor: Colors.white,
+              onPressed: () async {
+                await LocationService.openLocationSettings();
+              },
+            ),
           ),
         );
       }
     } catch (e) {
+      print('Erreur dans _useCurrentLocation: $e');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Erreur: $e'),
+          content: Text('Erreur de géolocalisation: ${e.toString()}'),
           backgroundColor: Colors.red,
+          duration: const Duration(seconds: 5),
         ),
       );
     } finally {

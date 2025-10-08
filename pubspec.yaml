@@ -24,6 +24,7 @@ dependencies:
   timezone: ^0.9.4
   home_widget: ^0.6.0
   shared_preferences: ^2.3.2
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:
@@ -35,10 +36,10 @@ dev_dependencies:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/Logo.png"
+  image_path: "assets/img.png"
   remove_alpha_ios: true
   adaptive_icon_background: "#90B2F9"
-  adaptive_icon_foreground: "assets/Logo.png"
+  adaptive_icon_foreground: "assets/img.png"
 
 flutter:
   uses-material-design: true

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../services/weather_widget_service.dart';
-import '../services/notification_service.dart';
 import '../services/background_service.dart';
+import 'privacy_policy_page.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -167,7 +167,50 @@ class _SettingsPageState extends State<SettingsPage> {
                         },
                       ),
                       const SizedBox(height: 30),
-                      _buildActionButtons(),
+                      _buildSectionTitle('ℹ️ Informations'),
+                      _buildActionButton(
+                        icon: Icons.privacy_tip_outlined,
+                        title: 'Politique de Confidentialité',
+                        subtitle: 'Vos données et votre vie privée',
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const PrivacyPolicyPage(),
+                            ),
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 15),
+                      _buildActionButton(
+                        icon: Icons.delete_outline,
+                        title: 'Réinitialiser les données',
+                        subtitle: 'Supprimer toutes vos données',
+                        onTap: () => _showResetDialog(),
+                      ),
+                      const SizedBox(height: 30),
+                      _buildSectionTitle('📱 Actions'),
+                      _buildActionButton(
+                        icon: Icons.refresh,
+                        title: 'Mettre à jour le widget',
+                        subtitle: 'Actualiser manuellement',
+                        onTap: () async {
+                          await WeatherWidgetService.updateWidget();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Widget mis à jour!'),
+                              backgroundColor: Colors.green,
+                            ),
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 15),
+                      _buildActionButton(
+                        icon: Icons.info_outline,
+                        title: 'À propos du widget',
+                        subtitle: 'Instructions d\'installation',
+                        onTap: () => _showWidgetInstructions(),
+                      ),
                       const SizedBox(height: 20),
                     ],
                   ),
@@ -303,34 +346,6 @@ class _SettingsPageState extends State<SettingsPage> {
     ).animate().fadeIn(delay: 300.ms, duration: 600.ms).slideY(begin: 0.3);
   }
 
-  Widget _buildActionButtons() {
-    return Column(
-      children: [
-        _buildActionButton(
-          icon: Icons.refresh,
-          title: 'Mettre à jour le widget',
-          subtitle: 'Actualiser manuellement',
-          onTap: () async {
-            await WeatherWidgetService.updateWidget();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Widget mis à jour!'),
-                backgroundColor: Colors.green,
-              ),
-            );
-          },
-        ),
-        const SizedBox(height: 15),
-        _buildActionButton(
-          icon: Icons.info_outline,
-          title: 'À propos du widget',
-          subtitle: 'Instructions d\'installation',
-          onTap: () => _showWidgetInstructions(),
-        ),
-      ],
-    );
-  }
-
   Widget _buildActionButton({
     required IconData icon,
     required String title,
@@ -403,6 +418,63 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       ),
     ).animate().fadeIn(delay: 400.ms, duration: 600.ms).slideY(begin: 0.3);
+  }
+
+  void _showResetDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: const Color(0xFF1B263B),
+        title: const Row(
+          children: [
+            Icon(Icons.warning_amber_rounded, color: Colors.orange, size: 28),
+            SizedBox(width: 10),
+            Text(
+              'Réinitialiser les données',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+          ],
+        ),
+        content: const Text(
+          'Cette action supprimera :\n\n'
+          '• Votre nom d\'utilisateur\n'
+          '• Vos villes favorites\n'
+          '• Vos préférences de notification\n'
+          '• L\'historique des notifications\n\n'
+          'Cette action est irréversible.',
+          style: TextStyle(color: Colors.white70, height: 1.5),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text(
+              'Annuler',
+              style: TextStyle(color: Colors.white70),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              final prefs = await SharedPreferences.getInstance();
+              await prefs.clear();
+              if (context.mounted) {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Données réinitialisées avec succès'),
+                    backgroundColor: Colors.green,
+                  ),
+                );
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              foregroundColor: Colors.white,
+            ),
+            child: const Text('Supprimer'),
+          ),
+        ],
+      ),
+    );
   }
 
   void _showWidgetInstructions() {

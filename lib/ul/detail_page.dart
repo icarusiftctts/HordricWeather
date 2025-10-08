@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:intl/intl.dart';
-import 'package:hordricweather/models/constants.dart';
 import 'package:hordricweather/ul/widgets/weather_item.dart';
 import 'package:hordricweather/ul/welcome.dart';
 
@@ -66,8 +65,6 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    Constants myConstants = Constants();
-
     if (widget.consolidatedWeatherList.isEmpty || hourlyWeatherData.isEmpty) {
       return _buildEmptyState();
     }

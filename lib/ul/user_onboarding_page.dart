@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../services/user_service.dart';
+import 'widgets/app_logo.dart';
 
 class UserOnboardingPage extends StatefulWidget {
   final VoidCallback onComplete;
@@ -138,10 +139,10 @@ class _UserOnboardingPageState extends State<UserOnboardingPage>
                     ),
                   ],
                 ),
-                child: const Icon(
-                  Icons.waving_hand,
+                child: AppLogo(
                   size: 60,
-                  color: Colors.white,
+                  withShadow: false,
+                  withAnimation: false,
                 ),
               ),
             );
@@ -152,7 +153,7 @@ class _UserOnboardingPageState extends State<UserOnboardingPage>
 
         // Titre principal
         Text(
-          'Bienvenue dans\nHordricWeather ! 🌤️',
+          'Bienvenue dans\nHordricWeather !',
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontSize: 32,

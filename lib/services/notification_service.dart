@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -150,25 +149,25 @@ class NotificationService {
     // Alertes pour conditions extrêmes
     if (condition.contains('thunderstorm')) {
       showWeatherAlert(
-        title: '⚡ Alerte Orage - $cityName',
+        title: 'Alerte Orage - $cityName',
         body: 'Orages prévus: $description. Restez à l\'abri!',
         weatherType: 'thunderstorm',
       );
     } else if (condition.contains('rain') && description.contains('heavy')) {
       showWeatherAlert(
-        title: '🌧️ Alerte Pluie Forte - $cityName',
+        title: 'Alerte Pluie Forte - $cityName',
         body: 'Fortes pluies prévues: $description. Prudence sur les routes!',
         weatherType: 'heavy_rain',
       );
     } else if (temp > 35) {
       showWeatherAlert(
-        title: '🌡️ Alerte Chaleur - $cityName',
+        title: 'Alerte Chaleur - $cityName',
         body: 'Température élevée: ${temp.round()}°C. Hydratez-vous!',
         weatherType: 'heat_wave',
       );
     } else if (temp < 5) {
       showWeatherAlert(
-        title: '❄️ Alerte Froid - $cityName',
+        title: 'Alerte Froid - $cityName',
         body: 'Température basse: ${temp.round()}°C. Couvrez-vous bien!',
         weatherType: 'cold_wave',
       );
@@ -201,8 +200,8 @@ class NotificationService {
 
       await _notificationsPlugin.show(
         2,
-        '🌤️ Météo du jour - $cityName',
-        '$temp°C, $description • Humidité: $humidity% • Vent: $windSpeed km/h',
+        'Meteo du jour - $cityName',
+        '$temp C, $description - Humidite: $humidity% - Vent: $windSpeed km/h',
         platformChannelSpecifics,
       );
     } catch (e) {
@@ -259,87 +258,12 @@ class NotificationService {
 
       await _notificationsPlugin.show(
         3,
-        '🌤️ $temp°C - $cityName',
+        '$temp C - $cityName',
         detailedBody,
         platformChannelSpecifics,
       );
     } catch (e) {
       print('Erreur lors de l\'affichage sur l\'écran de verrouillage: $e');
-    }
-  }
-
-  static Future<void> showScreenTimeAlert({
-    required String title,
-    required String body,
-    required String appName,
-  }) async {
-    try {
-      // Personnaliser le message avec le nom de l'utilisateur
-      final personalizedTitle =
-          UserService.getPersonalizedMessage(title.replaceFirst('⏰ ', ''));
-      final personalizedBody = UserService.getPersonalizedMessage(body);
-
-      final androidPlatformChannelSpecifics = AndroidNotificationDetails(
-        'screen_time_alerts',
-        'Alertes Temps d\'Écran',
-        channelDescription: 'Alertes pour le suivi du temps d\'écran',
-        importance: Importance.high,
-        priority: Priority.high,
-        icon: '@mipmap/ic_launcher',
-        styleInformation: BigTextStyleInformation(''),
-        enableLights: true,
-        ledColor: const Color.fromARGB(255, 255, 0, 0),
-        enableVibration: true,
-        vibrationPattern: Int64List.fromList([0, 500, 250, 500]),
-      );
-
-      final platformChannelSpecifics =
-          NotificationDetails(android: androidPlatformChannelSpecifics);
-
-      await _notificationsPlugin.show(
-        4,
-        '⏰ $personalizedTitle',
-        personalizedBody,
-        platformChannelSpecifics,
-      );
-    } catch (e) {
-      print('Erreur lors de l\'affichage de l\'alerte temps d\'écran: $e');
-    }
-  }
-
-  static Future<void> showScreenTimeReport({
-    required String title,
-    required String body,
-    required int totalMinutes,
-  }) async {
-    try {
-      // Personnaliser le message avec le nom de l'utilisateur
-      final personalizedTitle =
-          UserService.getPersonalizedMessage(title.replaceFirst('📊 ', ''));
-      final personalizedBody = UserService.getPersonalizedMessage(body);
-
-      const AndroidNotificationDetails androidPlatformChannelSpecifics =
-          AndroidNotificationDetails(
-        'screen_time_reports',
-        'Rapports Temps d\'Écran',
-        channelDescription: 'Rapports horaires du temps d\'écran',
-        importance: Importance.low,
-        priority: Priority.low,
-        icon: '@mipmap/ic_launcher',
-        styleInformation: BigTextStyleInformation(''),
-      );
-
-      const NotificationDetails platformChannelSpecifics =
-          NotificationDetails(android: androidPlatformChannelSpecifics);
-
-      await _notificationsPlugin.show(
-        5,
-        '📊 $personalizedTitle',
-        personalizedBody,
-        platformChannelSpecifics,
-      );
-    } catch (e) {
-      print('Erreur lors de l\'affichage du rapport temps d\'écran: $e');
     }
   }
 
@@ -357,8 +281,8 @@ class NotificationService {
       String advice = _generateWeatherAdvice(
           weatherDescription, temperature, humidity, windSpeed);
       String personalizedTitle = (userName != null && userName.isNotEmpty)
-          ? '$greeting $userName ! 🌅'
-          : 'Bonjour ! 🌅';
+          ? '$greeting $userName'
+          : 'Bonjour';
 
       String personalizedBody = (userName != null && userName.isNotEmpty)
           ? '$userName, voici vos conseils pour aujourd\'hui :\n\n$advice'
@@ -400,41 +324,41 @@ class NotificationService {
     // Conseils basés sur la température
     if (temperature < 10) {
       advice.add(
-          '🧥 Il fait froid aujourd\'hui (${temperature.round()}°C). Pensez à vous habiller chaudement !');
+          'Il fait froid aujourd\'hui (${temperature.round()}C). Pensez a vous habiller chaudement.');
     } else if (temperature > 25) {
       advice.add(
-          '☀️ Il fait chaud aujourd\'hui (${temperature.round()}°C). Restez hydraté et portez des vêtements légers !');
+          'Il fait chaud aujourd\'hui (${temperature.round()}C). Restez hydrate et portez des vetements legers.');
     } else {
       advice.add(
-          '🌡️ Température agréable aujourd\'hui (${temperature.round()}°C). Parfait pour sortir !');
+          'Temperature agreable aujourd\'hui (${temperature.round()}C). Parfait pour sortir.');
     }
 
     // Conseils basés sur les conditions météo
     if (weatherDescription.toLowerCase().contains('rain') ||
         weatherDescription.toLowerCase().contains('pluie')) {
-      advice.add('🌧️ Il pleut aujourd\'hui. N\'oubliez pas votre parapluie !');
+      advice.add('Il pleut aujourd\'hui. N\'oubliez pas votre parapluie.');
     } else if (weatherDescription.toLowerCase().contains('cloud') ||
         weatherDescription.toLowerCase().contains('nuage')) {
-      advice.add('☁️ Temps nuageux. Une veste légère pourrait être utile.');
+      advice.add('Temps nuageux. Une veste legere pourrait etre utile.');
     } else if (weatherDescription.toLowerCase().contains('clear') ||
         weatherDescription.toLowerCase().contains('sun')) {
-      advice.add('☀️ Beau temps ensoleillé ! Profitez-en pour sortir.');
+      advice.add('Beau temps ensoleille. Profitez-en pour sortir.');
     }
 
-    // Conseils basés sur l\'humidité
+    // Conseils basés sur l'humidité
     if (humidity > 80) {
       advice
-          .add('💧 Humidité élevée (${humidity}%). L\'air peut sembler lourd.');
+          .add('Humidite elevee (${humidity}%). L\'air peut sembler lourd.');
     }
 
     // Conseils basés sur le vent
     if (windSpeed > 10) {
       advice.add(
-          '💨 Vent fort (${windSpeed.round()} km/h). Attention aux objets légers !');
+          'Vent fort (${windSpeed.round()} km/h). Attention aux objets legers.');
     }
 
     // Conseil général pour la journée
-    advice.add('💪 Passez une excellente journée et prenez soin de vous !');
+    advice.add('Passez une excellente journee et prenez soin de vous.');
 
     return advice.join('\n\n');
   }
@@ -469,7 +393,7 @@ class NotificationService {
 
       await _notificationsPlugin.zonedSchedule(
         7, // ID unique pour les notifications du matin
-        '🌅 Conseil du Matin - HordricWeather',
+        'Conseil du Matin - HordricWeather',
         'Votre conseil météo personnalisé pour la journée vous attend !',
         tz.TZDateTime.from(scheduledDate, tz.local),
         platformChannelSpecifics,

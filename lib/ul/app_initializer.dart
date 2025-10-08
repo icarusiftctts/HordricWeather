@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../services/user_service.dart';
 import 'user_onboarding_page.dart';
 import 'get_started.dart';
+import 'home.dart';
 
 class AppInitializer extends StatefulWidget {
   const AppInitializer({super.key});
@@ -40,10 +41,10 @@ class _AppInitializerState extends State<AppInitializer> {
           ),
         );
       } else {
-        // Utilisateur existant - aller directement à l'app
+        // Utilisateur existant - aller directement vers l'ecran principal
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => const GetStarted(),
+            builder: (context) => const Home(),
           ),
         );
       }

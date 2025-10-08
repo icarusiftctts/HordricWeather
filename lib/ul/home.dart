@@ -13,7 +13,6 @@ import 'widgets/weather_item.dart';
 import 'detail_page.dart';
 import 'settings_page.dart';
 import 'advice_page.dart';
-import 'screen_time_page.dart';
 import 'welcome.dart';
 
 class Home extends StatefulWidget {
@@ -559,13 +558,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       ),
                     );
                     break;
-                  case 'screen_time':
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ScreenTimePage()),
-                    );
-                    break;
                   case 'settings':
                     Navigator.push(
                       context,
@@ -602,16 +594,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       Icon(Icons.lightbulb_outline, size: 20),
                       SizedBox(width: 12),
                       Text('Conseils'),
-                    ],
-                  ),
-                ),
-                PopupMenuItem<String>(
-                  value: 'screen_time',
-                  child: Row(
-                    children: [
-                      Icon(Icons.schedule, size: 20),
-                      SizedBox(width: 12),
-                      Text('Temps d\'écran'),
                     ],
                   ),
                 ),

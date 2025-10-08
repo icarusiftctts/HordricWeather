@@ -53,13 +53,13 @@ class UserService {
     final greeting = name != null ? name : "ami";
 
     if (hour < 12) {
-      return "Bonjour $greeting ! ☀️";
+      return "Bonjour $greeting !";
     } else if (hour < 17) {
-      return "Bon après-midi $greeting ! 🌤️";
+      return "Bon après-midi $greeting !";
     } else if (hour < 21) {
-      return "Bonsoir $greeting ! 🌅";
+      return "Bonsoir $greeting !";
     } else {
-      return "Bonne soirée $greeting ! 🌙";
+      return "Bonne soirée $greeting !";
     }
   }
 
@@ -76,11 +76,11 @@ class UserService {
   static List<String> getEncouragementMessages() {
     final name = getUserName() ?? "ami";
     return [
-      "$name, vous gérez parfaitement votre temps d'écran ! 🌟",
-      "Bravo $name ! Votre discipline est exemplaire ! ✨",
-      "$name, continuez sur cette belle lancée ! 👏",
-      "Félicitations $name ! Vous prenez soin de votre bien-être ! 💪",
-      "$name, votre équilibre numérique est inspirant ! 🎯",
+      "$name, vous êtes incroyable !",
+      "Bravo $name ! Votre discipline est exemplaire !",
+      "$name, continuez sur cette belle lancée !",
+      "Félicitations $name ! Vous prenez soin de votre bien-être !",
+      "$name, votre équilibre est inspirant !",
     ];
   }
 
@@ -88,11 +88,11 @@ class UserService {
   static List<String> getAlertMessages() {
     final name = getUserName() ?? "ami";
     return [
-      "$name, il est temps de faire une pause ! ⏰",
-      "$name, vos yeux ont besoin de repos ! 👀",
-      "$name, que diriez-vous d'un peu d'air frais ? 🌿",
-      "$name, une petite pause vous ferait du bien ! 🧘",
-      "$name, prenez soin de vous ! 💚",
+      "$name, il est temps de faire une pause !",
+      "$name, vos yeux ont besoin de repos !",
+      "$name, que diriez-vous d'un peu d'air frais ?",
+      "$name, une petite pause vous ferait du bien !",
+      "$name, prenez soin de vous !",
     ];
   }
 

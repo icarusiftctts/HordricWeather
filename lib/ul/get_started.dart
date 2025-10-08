@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../models/constants.dart';
 import '../services/notification_service.dart';
+import 'widgets/app_logo.dart';
 import 'welcome.dart';
 
 class GetStarted extends StatefulWidget {
@@ -150,14 +151,11 @@ class _GetStartedState extends State<GetStarted> with TickerProviderStateMixin {
                     ),
                     child: Column(
                       children: [
-                        Icon(
-                          Icons.wb_sunny_outlined,
+                        AppLogo(
                           size: 80,
-                          color: Colors.white,
-                        ).animate().scale(
-                              duration: 800.ms,
-                              curve: Curves.elasticOut,
-                            ),
+                          withShadow: true,
+                          withAnimation: true,
+                        ),
                         const SizedBox(height: 20),
                         RichText(
                           textAlign: TextAlign.center,
