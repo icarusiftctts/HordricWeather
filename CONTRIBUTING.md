@@ -1,6 +1,27 @@
 # Contributing to HordricWeather
 
+🎃 **Hacktoberfest 2025 Participant** - We welcome contributions!
+
 Thank you for your interest in contributing to HordricWeather!
+
+## 🎯 Hacktoberfest Contributors
+
+This project participates in Hacktoberfest 2025! We're looking for quality contributions that improve the app for everyone. Look for issues labeled with `hacktoberfest` or `good-first-issue` to get started.
+
+### Valid Contributions Include:
+- 🐛 Bug fixes
+- ✨ New features
+- 📝 Documentation improvements
+- 🎨 UI/UX enhancements
+- 🌍 Translations (new languages)
+- ♿ Accessibility improvements
+- ⚡ Performance optimizations
+
+### Invalid Contributions (will be marked as spam):
+- ❌ Minor formatting changes
+- ❌ README typo fixes only
+- ❌ Changing variable names without purpose
+- ❌ Adding whitespace or comments only
 
 ## How to Contribute
 
