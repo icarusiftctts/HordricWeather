@@ -1,0 +1,37 @@
+name: 👥 Add Contributors
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  add-contributors:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: 👥 Update contributors
+        uses: all-contributors/all-contributors-cli@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+      
+      - name: 📝 Commit changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          if [[ -n $(git status -s) ]]; then
+            git add .
+            git commit -m "docs: update contributors [skip ci]" || echo "No changes to commit"
+            git push
+          else
+            echo "No contributors changes detected"
+          fi
+        continue-on-error: true

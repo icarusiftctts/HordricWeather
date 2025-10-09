@@ -1,0 +1,51 @@
+{
+  "projectName": "HordricWeather",
+  "projectOwner": "HordRicJr",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "HordRicJr",
+      "name": "ASSOUN Rodrigue",
+      "avatar_url": "https://avatars.githubusercontent.com/HordRicJr",
+      "profile": "https://github.com/HordRicJr",
+      "contributions": [
+        "code",
+        "design",
+        "doc",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "dependabot",
+      "name": "Dependabot",
+      "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+      "profile": "https://github.com/apps/dependabot",
+      "contributions": [
+        "maintenance",
+        "security"
+      ]
+    },
+    {
+      "login": "copilot",
+      "name": "GitHub Copilot",
+      "avatar_url": "https://avatars.githubusercontent.com/in/44036?v=4",
+      "profile": "https://github.com/features/copilot",
+      "contributions": [
+        "code",
+        "ideas",
+        "tool"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "badgeTemplate": "[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg?style=for-the-badge)](#contributeurs-)",
+  "contributorTemplate": "<%= contributor.name %>"
+}

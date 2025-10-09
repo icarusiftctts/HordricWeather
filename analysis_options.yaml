@@ -38,7 +38,7 @@ linter:
     - lines_longer_than_80_chars
     
     # DOCUMENTATION
-    - package_api_docs
+    # package_api_docs removed in Dart 3.7.0
     - comment_references
     
     # USAGE

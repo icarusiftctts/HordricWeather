@@ -1,0 +1,45 @@
+version: 2
+updates:
+  # Maintenir les dépendances Dart/Flutter à jour
+  - package-ecosystem: "pub"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "hacktoberfest"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    
+  # Maintenir les GitHub Actions à jour
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "ci/cd"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+
+  # Maintenir Gradle (Android) à jour
+  - package-ecosystem: "gradle"
+    directory: "/android"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "android"
+    commit-message:
+      prefix: "deps(android)"

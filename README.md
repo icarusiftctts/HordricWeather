@@ -2,6 +2,9 @@
 
 ![Hacktoberfest 2025](https://img.shields.io/badge/Hacktoberfest-2025-orange?style=for-the-badge&logo=digitalocean)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=for-the-badge)](#contributeurs-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![Flutter](https://img.shields.io/badge/Flutter-3.32.8-02569B?logo=flutter)
@@ -11,6 +14,7 @@
 [![Flutter Test](https://github.com/HordRicJr/HordricWeather/actions/workflows/flutter_test.yml/badge.svg)](https://github.com/HordRicJr/HordricWeather/actions/workflows/flutter_test.yml)
 [![Build APK](https://github.com/HordRicJr/HordricWeather/actions/workflows/build_apk.yml/badge.svg)](https://github.com/HordRicJr/HordricWeather/actions/workflows/build_apk.yml)
 [![Code Quality](https://github.com/HordRicJr/HordricWeather/actions/workflows/code_quality.yml/badge.svg)](https://github.com/HordRicJr/HordricWeather/actions/workflows/code_quality.yml)
+[![Dependabot](https://img.shields.io/badge/Dependabot-enabled-blue?logo=dependabot)](https://github.com/HordRicJr/HordricWeather/network/updates)
 
 **Votre compagnon météo intelligent, gratuit et sans publicité !**
 
@@ -383,11 +387,69 @@ Pour toute question ou problème :
 
 ---
 
-## 🙏 Remerciements
+## � Contributeurs ✨
+
+Merci à ces personnes formidables qui ont contribué à ce projet ([emoji key](https://allcontributors.org/docs/en/emoji-key)) :
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%">
+        <a href="https://github.com/HordRicJr">
+          <img src="https://avatars.githubusercontent.com/HordRicJr?s=100" width="100px;" alt="HordRicJr"/>
+          <br />
+          <sub><b>ASSOUN Rodrigue</b></sub>
+        </a>
+        <br />
+        <a href="https://github.com/HordRicJr/HordricWeather/commits?author=HordRicJr" title="Code">💻</a>
+        <a href="#design-HordRicJr" title="Design">🎨</a>
+        <a href="https://github.com/HordRicJr/HordricWeather/commits?author=HordRicJr" title="Documentation">📖</a>
+        <a href="#maintenance-HordRicJr" title="Maintenance">🚧</a>
+      </td>
+      <td align="center" valign="top" width="14.28%">
+        <a href="https://github.com/apps/dependabot">
+          <img src="https://avatars.githubusercontent.com/in/29110?s=100&v=4" width="100px;" alt="Dependabot"/>
+          <br />
+          <sub><b>Dependabot</b></sub>
+        </a>
+        <br />
+        <a href="#maintenance-dependabot" title="Maintenance">🚧</a>
+        <a href="#security-dependabot" title="Security">🛡️</a>
+      </td>
+      <td align="center" valign="top" width="14.28%">
+        <a href="https://github.com/features/copilot">
+          <img src="https://avatars.githubusercontent.com/in/44036?s=100&v=4" width="100px;" alt="GitHub Copilot"/>
+          <br />
+          <sub><b>GitHub Copilot</b></sub>
+        </a>
+        <br />
+        <a href="https://github.com/HordRicJr/HordricWeather/commits?author=copilot" title="Code">💻</a>
+        <a href="#ideas-copilot" title="Ideas">🤔</a>
+        <a href="#tool-copilot" title="Tools">🔧</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+Ce projet suit la spécification [all-contributors](https://github.com/all-contributors/all-contributors). Les contributions de toute nature sont les bienvenues !
+
+---
+
+## �🙏 Remerciements
 
 - **OpenWeather** : Pour l'API météo gratuite
 - **Flutter Team** : Pour le framework incroyable
 - **Communauté Flutter** : Pour les packages open-source
+- **Hacktoberfest** : Pour encourager les contributions open-source
+- **GitHub Actions** : Pour l'automatisation CI/CD
 
 ---
 
@@ -404,6 +466,8 @@ Pour toute question ou problème :
 - 💡 Conseils vestimentaires et activités
 - 🏙️ Gestion multi-villes
 - 🚫 Aucune publicité, respect de la vie privée
+- 🤖 CI/CD avec GitHub Actions
+- 🛡️ Dependabot activé pour les mises à jour automatiques
 
 ---
 
@@ -411,7 +475,11 @@ Pour toute question ou problème :
 
 **HordricWeather** - Votre compagnon météo intelligent 🌤️
 
-Made with ❤️ by [HordRicJr](https://github.com/HordRicJr)
+Made with ❤️ by [HordRicJr](https://github.com/HordRicJr) et la communauté
+
+[![GitHub stars](https://img.shields.io/github/stars/HordRicJr/HordricWeather?style=social)](https://github.com/HordRicJr/HordricWeather/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/HordRicJr/HordricWeather?style=social)](https://github.com/HordRicJr/HordricWeather/network/members)
+[![GitHub watchers](https://img.shields.io/github/watchers/HordRicJr/HordricWeather?style=social)](https://github.com/HordRicJr/HordricWeather/watchers)
 
 [![Star this repo](https://img.shields.io/github/stars/HordRicJr/HordricWeather?style=social)](https://github.com/HordRicJr/HordricWeather)
 
