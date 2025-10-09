@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import '../../shared/models/constants.dart';
-import '../../shared/services/notification_service.dart';
-import 'widgets/app_logo.dart';
-import 'welcome.dart';
+import 'package:hordricweather/core/constants/constants.dart';
+import 'package:hordricweather/features/onboarding/pages/welcome_page.dart';
+import 'package:hordricweather/shared/services/notification_service.dart';
+import 'package:hordricweather/shared/widgets/app_logo.dart';
+
 
 class GetStarted extends StatefulWidget {
   const GetStarted({super.key});
