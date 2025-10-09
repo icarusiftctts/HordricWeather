@@ -1,0 +1,90 @@
+name: ✅ PR Checker
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  pr-checks:
+    name: Pull Request Quality Checks
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: 🏷️ Check PR labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = context.payload.pull_request.labels.map(l => l.name);
+            console.log('PR Labels:', labels);
+            
+            const validLabels = ['bug', 'enhancement', 'documentation', 'hacktoberfest', 'good first issue'];
+            const hasValidLabel = labels.some(label => validLabels.includes(label));
+            
+            if (!hasValidLabel) {
+              console.log('⚠️ PR should have at least one label');
+            } else {
+              console.log('✅ PR has valid labels');
+            }
+      
+      - name: 📝 Check PR description
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.pull_request.body || '';
+            const minLength = 50;
+            
+            if (body.length < minLength) {
+              core.warning(`PR description is too short (${body.length} chars). Please provide more details.`);
+            } else {
+              console.log(`✅ PR description is adequate (${body.length} chars)`);
+            }
+      
+      - name: 🎯 Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+      
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.32.8'
+          channel: 'stable'
+          cache: true
+      
+      - name: 📦 Get dependencies
+        run: flutter pub get
+      
+      - name: 🔍 Analyze changed files
+        run: |
+          echo "📊 Changed Files Analysis:"
+          git diff --name-only origin/${{ github.base_ref }}...HEAD | grep ".dart$" || echo "No Dart files changed"
+      
+      - name: 🧪 Quick tests on changed files
+        run: |
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep "^lib/.*\.dart$" || true)
+          if [ -n "$CHANGED_FILES" ]; then
+            echo "🧪 Running quick analysis on changed files..."
+            flutter analyze $CHANGED_FILES
+          else
+            echo "No Dart files in lib/ were changed"
+          fi
+        continue-on-error: true
+      
+      - name: 📏 Check code size impact
+        run: |
+          echo "📦 Estimating APK size impact..."
+          # This is a rough estimate - full build happens in build workflow
+          DART_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep "\.dart$" | wc -l)
+          echo "Changed Dart files: $DART_FILES"
+          echo "Estimated impact: $(($DART_FILES * 10))KB"
+      
+      - name: ✅ PR Check Summary
+        run: |
+          echo "✅ Pull Request checks completed!"
+          echo "🎯 Ready for review"

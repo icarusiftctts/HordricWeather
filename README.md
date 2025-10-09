@@ -7,6 +7,11 @@
 ![Flutter](https://img.shields.io/badge/Flutter-3.32.8-02569B?logo=flutter)
 ![Platform](https://img.shields.io/badge/platform-Android-brightgreen.svg)
 
+[![Flutter Analyze](https://github.com/HordRicJr/HordricWeather/actions/workflows/flutter_analyze.yml/badge.svg)](https://github.com/HordRicJr/HordricWeather/actions/workflows/flutter_analyze.yml)
+[![Flutter Test](https://github.com/HordRicJr/HordricWeather/actions/workflows/flutter_test.yml/badge.svg)](https://github.com/HordRicJr/HordricWeather/actions/workflows/flutter_test.yml)
+[![Build APK](https://github.com/HordRicJr/HordricWeather/actions/workflows/build_apk.yml/badge.svg)](https://github.com/HordRicJr/HordricWeather/actions/workflows/build_apk.yml)
+[![Code Quality](https://github.com/HordRicJr/HordricWeather/actions/workflows/code_quality.yml/badge.svg)](https://github.com/HordRicJr/HordricWeather/actions/workflows/code_quality.yml)
+
 **Votre compagnon météo intelligent, gratuit et sans publicité !**
 
 HordricWeather est une application météo moderne et élégante développée avec Flutter, qui vous accompagne au quotidien avec des prévisions précises, des alertes intelligentes, la qualité de l'air et un widget personnalisable. Entièrement gratuite, sans publicité et respectueuse de votre vie privée.

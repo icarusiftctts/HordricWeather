@@ -1,0 +1,66 @@
+name: 🏗️ Build APK
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Android APK
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+      
+      - name: 🎯 Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+      
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.32.8'
+          channel: 'stable'
+          cache: true
+      
+      - name: 📦 Get dependencies
+        run: flutter pub get
+      
+      - name: 🏗️ Build APK (Debug)
+        if: github.event_name == 'pull_request'
+        run: flutter build apk --debug
+      
+      - name: 🏗️ Build APK (Release)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: flutter build apk --release --split-per-abi
+      
+      - name: 📦 Upload APK artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-apk
+          path: |
+            build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
+            build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+            build/app/outputs/flutter-apk/app-x86_64-release.apk
+          retention-days: 30
+      
+      - name: 📊 APK Size Analysis
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          echo "📦 APK Sizes:"
+          ls -lh build/app/outputs/flutter-apk/*.apk
+      
+      - name: ✅ Build Summary
+        if: success()
+        run: |
+          echo "✅ APK built successfully!"
+          echo "Available in artifacts section."

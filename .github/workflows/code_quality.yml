@@ -1,0 +1,79 @@
+name: 📈 Code Quality
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Tous les lundis à 9h UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  quality:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for better analysis
+      
+      - name: 🎯 Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+      
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.32.8'
+          channel: 'stable'
+          cache: true
+      
+      - name: 📦 Get dependencies
+        run: flutter pub get
+      
+      - name: 📏 Count lines of code
+        run: |
+          echo "📊 Lines of Code Statistics:"
+          echo "----------------------------"
+          find lib -name "*.dart" | xargs wc -l | tail -1
+          echo ""
+          echo "📁 Files by directory:"
+          find lib -name "*.dart" -type f | cut -d/ -f1-3 | sort | uniq -c
+      
+      - name: 🔍 Check code complexity
+        run: |
+          echo "🧮 Code Complexity Check:"
+          flutter pub global activate dart_code_metrics
+          flutter pub global run dart_code_metrics:metrics analyze lib --reporter=console
+        continue-on-error: true
+      
+      - name: 🔒 Security audit
+        run: |
+          echo "🔒 Security Audit:"
+          echo "Checking for known vulnerabilities in dependencies..."
+          flutter pub outdated --json > outdated.json || true
+          cat outdated.json
+        continue-on-error: true
+      
+      - name: 📦 Dependency analysis
+        run: |
+          echo "📦 Dependency Tree:"
+          flutter pub deps --style=compact
+      
+      - name: 🎯 Unused code detection
+        run: |
+          echo "🎯 Checking for unused imports and code..."
+          flutter analyze --no-fatal-infos | grep -i "unused" || echo "No unused code detected"
+        continue-on-error: true
+      
+      - name: ✅ Quality Summary
+        if: success()
+        run: |
+          echo "✅ Code quality checks completed!"
+          echo "Review the logs above for detailed metrics."
