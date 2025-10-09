@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:hordricweather/features/onboarding/pages/welcome_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -13,7 +14,6 @@ import '../widgets/weather_item.dart';
 import '../../weather/pages/detail_page.dart';
 import '../../settings/pages/settings_page.dart';
 import '../../advice/pages/advice_page.dart';
-import 'welcome.dart';
 
 class Home extends StatefulWidget {
   final City? selectedCity;
@@ -471,7 +471,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             Text(
               'HordricWeather',
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
