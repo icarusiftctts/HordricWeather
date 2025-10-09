@@ -471,7 +471,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             Text(
               'HordricWeather',
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
