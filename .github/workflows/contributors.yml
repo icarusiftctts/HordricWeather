@@ -9,29 +9,24 @@ on:
 jobs:
   add-contributors:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: 👥 Update contributors
-        uses: all-contributors/all-contributors-cli@v1
+      - name: 👥 Generate contributors list
+        uses: akhilmhdh/contributors-readme-action@v2.3.10
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        continue-on-error: true
-      
-      - name: 📝 Commit changes
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          
-          if [[ -n $(git status -s) ]]; then
-            git add .
-            git commit -m "docs: update contributors [skip ci]" || echo "No changes to commit"
-            git push
-          else
-            echo "No contributors changes detected"
-          fi
+        with:
+          readme_path: 'README.md'
+          committer_username: 'github-actions[bot]'
+          committer_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'docs: update contributors [skip ci]'
         continue-on-error: true
