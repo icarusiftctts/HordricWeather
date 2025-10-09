@@ -3,7 +3,7 @@
 ![Hacktoberfest 2025](https://img.shields.io/badge/Hacktoberfest-2025-orange?style=for-the-badge&logo=digitalocean)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=for-the-badge)](#contributeurs-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=for-the-badge)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
@@ -16,266 +16,266 @@
 [![Code Quality](https://github.com/HordRicJr/HordricWeather/actions/workflows/code_quality.yml/badge.svg)](https://github.com/HordRicJr/HordricWeather/actions/workflows/code_quality.yml)
 [![Dependabot](https://img.shields.io/badge/Dependabot-enabled-blue?logo=dependabot)](https://github.com/HordRicJr/HordricWeather/network/updates)
 
-**Votre compagnon météo intelligent, gratuit et sans publicité !**
+**Your smart, free, and ad-free weather companion!**
 
-HordricWeather est une application météo moderne et élégante développée avec Flutter, qui vous accompagne au quotidien avec des prévisions précises, des alertes intelligentes, la qualité de l'air et un widget personnalisable. Entièrement gratuite, sans publicité et respectueuse de votre vie privée.
-
----
-
-## 📱 Téléchargement
-
-[![Get it on Google Play](https://img.shields.io/badge/Google%20Play-Bientôt%20disponible-brightgreen?logo=google-play)](https://play.google.com/store/apps)
+HordricWeather is a modern and elegant weather app built with Flutter, providing accurate forecasts, intelligent alerts, air quality monitoring, and a customizable widget. Completely free, ad-free, and respectful of your privacy.
 
 ---
 
-## ✨ Aperçu
+## 📱 Download
 
-*(Captures d'écran à venir)*
-
----
-
-## 🚀 Fonctionnalités
-
-### 🌡️ Météo Complète et Précise
-- Prévisions basées sur votre position GPS en temps réel
-- Température actuelle et ressentie
-- Humidité, pression atmosphérique
-- Vitesse et direction du vent
-- Prévisions horaires détaillées
-- Prévisions sur 5 jours
-- Mise à jour automatique toutes les 30 minutes
-
-### 🔔 Alertes Intelligentes et Personnalisables
-- Notifications météo extrêmes (canicule, grand froid, orages, vents violents)
-- Alertes changements brusques de température (>5°C)
-- Prévisions horaires de pluie/neige/orages imminents
-- Météo quotidienne à 8h00
-- Système anti-spam avec cooldown (2h pour changements, 6h pour alertes)
-
-### 🌍 Qualité de l'Air en Temps Réel
-- Indice AQI en temps réel (échelle 1-5)
-- Détails des polluants (PM2.5, PM10, NO2, O3, SO2, CO)
-- Conseils santé personnalisés selon la qualité
-- Mise à jour automatique
-
-### 💡 Conseils Personnalisés au Quotidien
-- Recommandations vestimentaires selon la météo
-- Suggestions d'activités adaptées
-- Conseils santé selon qualité de l'air
-
-### 📱 Widget Android Élégant
-- Widget météo sur écran d'accueil
-- Design moderne et épuré
-- Mise à jour automatique toutes les 30 minutes
-- Affichage : température, humidité, vent, conditions
-
-### 🎨 Interface Moderne et Fluide
-- Design élégant avec gradients bleu/cyan
-- Animations fluides (flutter_animate)
-- Icônes météo animées
-- Mode sombre intégré
-- Navigation intuitive
-
-### 🏙️ Gestion Multi-Villes
-- Ajoutez plusieurs villes en favoris
-- Basculez rapidement entre vos localisations
-- Prévisions pour toutes vos villes sauvegardées
-
-### ⚙️ Paramètres Personnalisables
-- Activez/désactivez les notifications
-- Configurez les alertes selon vos besoins
-- Gérez le widget et les mises à jour
-- Réinitialisez vos données
-- Accédez à la politique de confidentialité
-
-### 🔒 Respect Total de Votre Vie Privée
-- Aucune donnée envoyée à nos serveurs
-- Stockage 100% local (SharedPreferences)
-- Aucune publicité, aucun tracker
-- Communications sécurisées (HTTPS)
-- Conforme RGPD et CCPA
-- Suppression des données à tout moment
+[![Get it on Google Play](https://img.shields.io/badge/Google%20Play-Coming%20Soon-brightgreen?logo=google-play)](https://play.google.com/store/apps)
 
 ---
 
-## 📂 Structure du Projet
+## ✨ Preview
+
+*(Screenshots coming soon)*
+
+---
+
+## 🚀 Features
+
+### 🌡️ Complete and Accurate Weather
+- Real-time GPS-based forecasts
+- Current and feels-like temperature
+- Humidity, atmospheric pressure
+- Wind speed and direction
+- Detailed hourly forecasts
+- 5-day forecasts
+- Automatic updates every 30 minutes
+
+### 🔔 Smart and Customizable Alerts
+- Extreme weather notifications (heatwave, cold, storms, high winds)
+- Sudden temperature change alerts (>5°C)
+- Hourly forecasts for imminent rain/snow/storms
+- Daily weather at 8:00 AM
+- Anti-spam system with cooldowns (2h for changes, 6h for alerts)
+
+### 🌍 Real-Time Air Quality
+- Real-time AQI index (scale 1-5)
+- Pollutant details (PM2.5, PM10, NO2, O3, SO2, CO)
+- Personalized health advice based on quality
+- Automatic updates
+
+### 💡 Daily Personalized Advice
+- Clothing recommendations based on weather
+- Adapted activity suggestions
+- Health advice based on air quality
+
+### 📱 Elegant Android Widget
+- Weather widget on home screen
+- Modern and clean design
+- Automatic updates every 30 minutes
+- Display: temperature, humidity, wind, conditions
+
+### 🎨 Modern and Fluid Interface
+- Elegant design with blue/cyan gradients
+- Smooth animations (flutter_animate)
+- Animated weather icons
+- Integrated dark mode
+- Intuitive navigation
+
+### 🏙️ Multi-City Management
+- Add multiple favorite cities
+- Quickly switch between your locations
+- Forecasts for all your saved cities
+
+### ⚙️ Customizable Settings
+- Enable/disable notifications
+- Configure alerts according to your needs
+- Manage widget and updates
+- Reset your data
+- Access privacy policy
+
+### 🔒 Complete Privacy Respect
+- No data sent to our servers
+- 100% local storage (SharedPreferences)
+- No ads, no trackers
+- Secure communications (HTTPS)
+- GDPR and CCPA compliant
+- Data deletion at any time
+
+---
+
+## 📂 Project Structure
 
 ```
 lib/
-├── main.dart                              : Point d'entrée de l'application
+├── main.dart                              : Application entry point
 │
-├── core/                                  : Code de base réutilisable
+├── core/                                  : Reusable base code
 │   ├── constants/
-│   │   └── constants.dart                 : Constantes globales (couleurs, API key)
+│   │   └── constants.dart                 : Global constants (colors, API key)
 │   └── config/
-│       └── app_initializer.dart           : Initialisation et routing de l'app
+│       └── app_initializer.dart           : App initialization and routing
 │
-├── features/                              : Fonctionnalités par domaine
-│   ├── home/                              : Page d'accueil météo
+├── features/                              : Features by domain
+│   ├── home/                              : Weather home page
 │   │   ├── pages/
-│   │   │   └── home_page.dart             : Écran principal avec météo actuelle
+│   │   │   └── home_page.dart             : Main screen with current weather
 │   │   └── widgets/
-│   │       └── weather_item.dart          : Widget élément météo réutilisable
+│   │       └── weather_item.dart          : Reusable weather item widget
 │   │
-│   ├── weather/                           : Détails météo
+│   ├── weather/                           : Weather details
 │   │   └── pages/
-│   │       └── detail_page.dart           : Page prévisions horaires détaillées
+│   │       └── detail_page.dart           : Detailed hourly forecasts page
 │   │
-│   ├── settings/                          : Paramètres et configuration
+│   ├── settings/                          : Settings and configuration
 │   │   └── pages/
-│   │       ├── settings_page.dart         : Page paramètres et notifications
-│   │       └── privacy_policy_page.dart   : Politique de confidentialité
+│   │       ├── settings_page.dart         : Settings and notifications page
+│   │       └── privacy_policy_page.dart   : Privacy policy
 │   │
-│   ├── advice/                            : Conseils personnalisés
+│   ├── advice/                            : Personalized advice
 │   │   └── pages/
-│   │       └── advice_page.dart           : Conseils météo + qualité de l'air
+│   │       └── advice_page.dart           : Weather advice + air quality
 │   │
-│   └── onboarding/                        : Première utilisation
+│   └── onboarding/                        : First-time use
 │       └── pages/
-│           ├── get_started_page.dart      : Écran de démarrage avec logo animé
-│           ├── welcome_page.dart          : Sélection des villes favorites
-│           └── user_onboarding_page.dart  : Onboarding utilisateur
+│           ├── get_started_page.dart      : Startup screen with animated logo
+│           ├── welcome_page.dart          : Favorite city selection
+│           └── user_onboarding_page.dart  : User onboarding
 │
-└── shared/                                : Ressources partagées
+└── shared/                                : Shared resources
     ├── models/
-    │   └── city.dart                      : Modèle de données Ville (2600+ villes)
+    │   └── city.dart                      : City data model (2600+ cities)
     │
-    ├── services/                          : Services métier
-    │   ├── notification_service.dart      : Gestion des notifications push
-    │   ├── background_service.dart        : Service arrière-plan (mises à jour)
-    │   ├── weather_widget_service.dart    : Service widget Android natif
-    │   ├── user_service.dart              : Gestion utilisateur et préférences
-    │   ├── location_service.dart          : Géolocalisation GPS
-    │   ├── air_quality_service.dart       : API qualité de l'air
-    │   ├── clothing_advice_service.dart   : Conseils vestimentaires intelligents
-    │   └── daily_advice_service.dart      : Service conseils quotidiens
+    ├── services/                          : Business services
+    │   ├── notification_service.dart      : Push notifications management
+    │   ├── background_service.dart        : Background service (updates)
+    │   ├── weather_widget_service.dart    : Native Android widget service
+    │   ├── user_service.dart              : User management and preferences
+    │   ├── location_service.dart          : GPS geolocation
+    │   ├── air_quality_service.dart       : Air quality API
+    │   ├── clothing_advice_service.dart   : Smart clothing recommendations
+    │   └── daily_advice_service.dart      : Daily advice service
     │
-    └── widgets/                           : Widgets partagés
-        └── app_logo.dart                  : Logo animé réutilisable
+    └── widgets/                           : Shared widgets
+        └── app_logo.dart                  : Reusable animated logo
 
 assets/
-├── Logo.png                               : Logo principal HordricWeather
-├── clear.png, clouds.png, rain.png...     : Icônes conditions météo
-└── [autres assets]                        : Icônes UI (humidité, vent, etc.)
+├── Logo.png                               : Main HordricWeather logo
+├── clear.png, clouds.png, rain.png...     : Weather condition icons
+└── [other assets]                         : UI icons (humidity, wind, etc.)
 
 android/
 ├── app/
-│   ├── build.gradle                       : Configuration build Android
-│   ├── upload-keystore.jks                : Clé de signature Play Store
+│   ├── build.gradle                       : Android build configuration
+│   ├── upload-keystore.jks                : Play Store signing key
 │   └── src/main/res/
-│       ├── layout/                        : Layouts widget Android
-│       ├── xml/                           : Configuration widget
-│       └── mipmap-*/                      : Icônes launcher (hdpi à xxxhdpi)
-└── key.properties                         : Propriétés keystore (non versionné)
+│       ├── layout/                        : Android widget layouts
+│       ├── xml/                           : Widget configuration
+│       └── mipmap-*/                      : Launcher icons (hdpi to xxxhdpi)
+└── key.properties                         : Keystore properties (not versioned)
 ```
 
 ### 🏗️ Architecture
 
-HordricWeather suit l'architecture **Feature-First** recommandée par Flutter :
+HordricWeather follows the **Feature-First** architecture recommended by Flutter:
 
-- **`core/`** : Configuration et constantes globales
-- **`features/`** : Fonctionnalités organisées par domaine métier (home, weather, settings, etc.)
-- **`shared/`** : Code réutilisable (models, services, widgets communs)
+- **`core/`**: Global configuration and constants
+- **`features/`**: Features organized by business domain (home, weather, settings, etc.)
+- **`shared/`**: Reusable code (models, services, common widgets)
 
-Cette structure facilite :
-- 📦 La scalabilité du projet
-- 🧪 Les tests unitaires et d'intégration
-- 👥 Le travail en équipe
-- 🔄 La maintenance et les évolutions
+This structure facilitates:
+- 📦 Project scalability
+- 🧪 Unit and integration testing
+- 👥 Team collaboration
+- 🔄 Maintenance and evolution
 
 ---
 
-## 🛠️ Installation et Compilation
+## 🛠️ Installation and Build
 
-### Prérequis
+### Prerequisites
 
-- Flutter 3.32.8 ou supérieur
-- Dart 3.8.1 ou supérieur
-- Android SDK 34 ou supérieur
-- Compte OpenWeather API (gratuit) : [https://openweathermap.org/api](https://openweathermap.org/api)
+- Flutter 3.32.8 or higher
+- Dart 3.8.1 or higher
+- Android SDK 34 or higher
+- OpenWeather API account (free): [https://openweathermap.org/api](https://openweathermap.org/api)
 
 ### 📥 Installation
 
-#### 1. Cloner le Repository
+#### 1. Clone the Repository
 ```bash
 git clone https://github.com/HordRicJr/HordricWeather.git
 cd HordricWeather
 ```
 
-#### 2. Installer les Dépendances
+#### 2. Install Dependencies
 ```bash
 flutter pub get
 ```
 
-#### 3. Configurer l'API OpenWeather
-Le projet utilise déjà une clé API OpenWeather configurée. Si vous souhaitez utiliser votre propre clé :
+#### 3. Configure OpenWeather API
+The project already uses a configured OpenWeather API key. If you want to use your own key:
 
-1. Créez un compte sur [OpenWeather](https://openweathermap.org/api)
-2. Obtenez votre clé API gratuite
-3. Remplacez la clé dans `lib/services/background_service.dart` :
+1. Create an account on [OpenWeather](https://openweathermap.org/api)
+2. Get your free API key
+3. Replace the key in `lib/core/constants/constants.dart`:
 ```dart
-static const String _weatherApiKey = 'VOTRE_CLE_API';
+static const String apiKey = 'YOUR_API_KEY';
 ```
 
-#### 4. Générer les Icônes Launcher
+#### 4. Generate Launcher Icons
 ```bash
 dart run flutter_launcher_icons
 ```
 
-#### 5. Lancer l'Application
+#### 5. Run the Application
 
-**Mode Debug**
+**Debug Mode**
 ```bash
 flutter run
 ```
 
-**Mode Release (APK)**
+**Release Mode (APK)**
 ```bash
 flutter build apk --release
 ```
 
-**Mode Release (AAB pour Play Store)**
+**Release Mode (AAB for Play Store)**
 ```bash
 flutter build appbundle --release
 ```
 
 ---
 
-## 📦 Dépendances Principales
+## 📦 Main Dependencies
 
 ```yaml
 dependencies:
   flutter:
     sdk: flutter
-  http: ^1.2.2                          # Requêtes API
-  intl: ^0.20.1                         # Internationalisation et dates
-  flutter_local_notifications: ^17.2.3  # Notifications locales
-  permission_handler: ^11.3.1           # Gestion des permissions
-  geolocator: ^13.0.1                   # Géolocalisation
+  http: ^1.2.2                          # API requests
+  intl: ^0.20.1                         # Internationalization and dates
+  flutter_local_notifications: ^17.2.3  # Local notifications
+  permission_handler: ^11.3.1           # Permissions management
+  geolocator: ^13.0.1                   # Geolocation
   flutter_animate: ^4.5.0               # Animations
-  home_widget: ^0.6.0                   # Widget Android
-  shared_preferences: ^2.3.2            # Stockage local
-  url_launcher: ^6.3.1                  # Ouverture de liens
-  flutter_launcher_icons: ^0.14.2       # Génération d'icônes
+  home_widget: ^0.6.0                   # Android widget
+  shared_preferences: ^2.3.2            # Local storage
+  url_launcher: ^6.3.1                  # Link opening
+  flutter_launcher_icons: ^0.14.2       # Icon generation
 ```
 
 ---
 
-## 🌐 API Utilisée
+## 🌐 API Used
 
-**OpenWeather API** : [https://openweathermap.org/](https://openweathermap.org/)
+**OpenWeather API**: [https://openweathermap.org/](https://openweathermap.org/)
 
-Endpoints utilisés :
-- `/data/2.5/weather` : Météo actuelle
-- `/data/2.5/forecast` : Prévisions horaires (5 jours)
-- `/data/2.5/air_pollution` : Qualité de l'air
+Endpoints used:
+- `/data/2.5/weather`: Current weather
+- `/data/2.5/forecast`: Hourly forecasts (5 days)
+- `/data/2.5/air_pollution`: Air quality
 
 ---
 
-## 🔐 Permissions Android
+## 🔐 Android Permissions
 
 ```xml
-<!-- Permissions dans AndroidManifest.xml -->
+<!-- Permissions in AndroidManifest.xml -->
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -287,109 +287,109 @@ Endpoints utilisés :
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ Architecture Details
 
 ### Services
-- **NotificationService** : Gestion des notifications (alertes, quotidienne, lockscreen)
-- **BackgroundService** : Mises à jour automatiques en arrière-plan (30 min)
-- **WeatherWidgetService** : Mise à jour du widget Android
-- **UserService** : Gestion des données utilisateur
-- **AirQualityService** : Calcul et conseils qualité de l'air
-- **ClothingAdviceService** : Recommandations vestimentaires
+- **NotificationService**: Notification management (alerts, daily, lockscreen)
+- **BackgroundService**: Automatic background updates (30 min)
+- **WeatherWidgetService**: Android widget updates
+- **UserService**: User data management
+- **AirQualityService**: Air quality calculation and advice
+- **ClothingAdviceService**: Clothing recommendations
 
-### Système de Notifications Intelligent
-- **Cooldown 2h** : Changements météo et température >5°C
-- **Cooldown 6h** : Alertes météo extrêmes (canicule, froid, orages, vents)
-- **Anti-duplicate** : Prévisions horaires (stockage par heure)
-- **Nettoyage automatique** : Suppression des anciens flags de notification
+### Smart Notification System
+- **2h Cooldown**: Weather changes and temperature >5°C
+- **6h Cooldown**: Extreme weather alerts (heatwave, cold, storms, winds)
+- **Anti-duplicate**: Hourly forecasts (storage by hour)
+- **Automatic cleanup**: Deletion of old notification flags
 
-### Stockage Local (SharedPreferences)
-- `background_weather_data` : Cache météo actuelle
-- `last_weather_change_notification` : Timestamp dernière notification changement
-- `last_alert_notification_{type}` : Timestamps alertes par type
-- `hourly_notified_{HH:mm}` : Flags prévisions horaires notifiées
-- `notifications_enabled` : État global des notifications
-- `widget_enabled` : État du widget
-- Villes favorites, nom utilisateur, préférences
+### Local Storage (SharedPreferences)
+- `background_weather_data`: Current weather cache
+- `last_weather_change_notification`: Last change notification timestamp
+- `last_alert_notification_{type}`: Alert timestamps by type
+- `hourly_notified_{HH:mm}`: Notified hourly forecast flags
+- `notifications_enabled`: Global notification state
+- `widget_enabled`: Widget state
+- Favorite cities, username, preferences
 
 ---
 
 ## 📚 Documentation
 
-- **[Politique de Confidentialité](https://hordricjr.github.io/HordricWeather/)** : Version web hébergée sur GitHub Pages
-- **CONTRIBUTING.md** : Guide de contribution
-- **LICENSE** : Licence MIT
+- **[Privacy Policy](https://hordricjr.github.io/HordricWeather/)**: Web version hosted on GitHub Pages
+- **CONTRIBUTING.md**: Contribution guide
+- **LICENSE**: MIT License
 
 ---
 
-## 🧪 Tests
+## 🧪 Testing
 
-### Lancer les Tests Unitaires
+### Run Unit Tests
 ```bash
 flutter test
 ```
 
-### Analyse du Code
+### Code Analysis
 ```bash
 flutter analyze
 ```
 
-### Nettoyage
+### Cleanup
 ```bash
 flutter clean
 ```
 
 ---
 
-## 👨‍💻 Auteur
+## 👨‍💻 Author
 
 **HordRicJr**
-- GitHub : [https://github.com/HordRicJr](https://github.com/HordRicJr)
-- Email : assounrodrigue5@gmail.com
+- GitHub: [https://github.com/HordRicJr](https://github.com/HordRicJr)
+- Email: assounrodrigue5@gmail.com
 
 ---
 
-## 📄 Licence
+## 📄 License
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🤝 Contributions
+## 🤝 Contributing
 
-Les contributions sont les bienvenues ! N'hésitez pas à :
+Contributions are welcome! Feel free to:
 
-1. **Forker le projet** et ajouter une étoile ⭐
-2. **Créer une branche** pour votre fonctionnalité
+1. **Fork the project** and add a star ⭐
+2. **Create a branch** for your feature
    ```bash
    git checkout -b feature/AmazingFeature
    ```
-3. **Commiter vos changements**
+3. **Commit your changes**
    ```bash
    git commit -m 'Add some AmazingFeature'
    ```
-4. **Pusher vers la branche**
+4. **Push to the branch**
    ```bash
    git push origin feature/AmazingFeature
    ```
-5. **Ouvrir une Pull Request**
+5. **Open a Pull Request**
 
-Consultez [CONTRIBUTING.md](CONTRIBUTING.md) pour plus de détails.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
 
 ---
 
 ## 💬 Support
 
-Pour toute question ou problème :
-- Ouvrez une [issue](https://github.com/HordRicJr/HordricWeather/issues)
-- Consultez la [documentation](https://hordricjr.github.io/HordricWeather/)
-- Email : assounrodrigue5@gmail.com
+For any questions or issues:
+- Open an [issue](https://github.com/HordRicJr/HordricWeather/issues)
+- Check the [documentation](https://hordricjr.github.io/HordricWeather/)
+- Email: assounrodrigue5@gmail.com
 
 ---
 
-## � Contributeurs ✨
+## 👥 Contributors ✨
 
-Merci à ces personnes formidables qui ont contribué à ce projet ([emoji key](https://allcontributors.org/docs/en/emoji-key)) :
+Thanks to these wonderful people who contributed to this project ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -439,43 +439,43 @@ Merci à ces personnes formidables qui ont contribué à ce projet ([emoji key](
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-Ce projet suit la spécification [all-contributors](https://github.com/all-contributors/all-contributors). Les contributions de toute nature sont les bienvenues !
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
 
 ---
 
-## �🙏 Remerciements
+## 🙏 Acknowledgments
 
-- **OpenWeather** : Pour l'API météo gratuite
-- **Flutter Team** : Pour le framework incroyable
-- **Communauté Flutter** : Pour les packages open-source
-- **Hacktoberfest** : Pour encourager les contributions open-source
-- **GitHub Actions** : Pour l'automatisation CI/CD
+- **OpenWeather**: For the free weather API
+- **Flutter Team**: For the amazing framework
+- **Flutter Community**: For open-source packages
+- **Hacktoberfest**: For encouraging open-source contributions
+- **GitHub Actions**: For CI/CD automation
 
 ---
 
 ## 📝 Changelog
 
-### Version 1.0.0 (8 octobre 2025)
-- ✨ Première version publique
-- 🌤️ Météo complète avec prévisions horaires et 5 jours
-- 🔔 Système de notifications intelligent avec cooldowns
-- 🌍 Qualité de l'air et conseils santé
-- 📱 Widget Android personnalisable
-- 🔒 Politique de confidentialité complète (RGPD/CCPA)
-- 🎨 Interface moderne avec animations
-- 💡 Conseils vestimentaires et activités
-- 🏙️ Gestion multi-villes
-- 🚫 Aucune publicité, respect de la vie privée
-- 🤖 CI/CD avec GitHub Actions
-- 🛡️ Dependabot activé pour les mises à jour automatiques
+### Version 1.0.0 (October 8, 2025)
+- ✨ First public release
+- 🌤️ Complete weather with hourly and 5-day forecasts
+- 🔔 Smart notification system with cooldowns
+- 🌍 Air quality and health advice
+- 📱 Customizable Android widget
+- 🔒 Complete privacy policy (GDPR/CCPA)
+- 🎨 Modern interface with animations
+- 💡 Clothing and activity advice
+- 🏙️ Multi-city management
+- 🚫 No ads, privacy-respecting
+- 🤖 CI/CD with GitHub Actions
+- 🛡️ Dependabot enabled for automatic updates
 
 ---
 
 <div align="center">
 
-**HordricWeather** - Votre compagnon météo intelligent 🌤️
+**HordricWeather** - Your smart weather companion 🌤️
 
-Made with ❤️ by [HordRicJr](https://github.com/HordRicJr) et la communauté
+Made with ❤️ by [HordRicJr](https://github.com/HordRicJr) and the community
 
 [![GitHub stars](https://img.shields.io/github/stars/HordRicJr/HordricWeather?style=social)](https://github.com/HordRicJr/HordricWeather/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/HordRicJr/HordricWeather?style=social)](https://github.com/HordRicJr/HordricWeather/network/members)
