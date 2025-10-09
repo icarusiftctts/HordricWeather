@@ -404,10 +404,10 @@ Merci à ces personnes formidables qui ont contribué à ce projet ([emoji key](
           <sub><b>ASSOUN Rodrigue</b></sub>
         </a>
         <br />
-        <a href="https://github.com/HordRicJr/HordricWeather/commits?author=HordRicJr" title="Code">💻</a>
-        <a href="#design-HordRicJr" title="Design">🎨</a>
-        <a href="https://github.com/HordRicJr/HordricWeather/commits?author=HordRicJr" title="Documentation">📖</a>
-        <a href="#maintenance-HordRicJr" title="Maintenance">🚧</a>
+        <a href="https://github.com/HordRicJr/HordricWeather/commits?author=HordRicJr" title="Code"></a>
+        <a href="#design-HordRicJr" title="Design"></a>
+        <a href="https://github.com/HordRicJr/HordricWeather/commits?author=HordRicJr" title="Documentation"></a>
+        <a href="#maintenance-HordRicJr" title="Maintenance"></a>
       </td>
       <td align="center" valign="top" width="14.28%">
         <a href="https://github.com/apps/dependabot">
@@ -416,8 +416,8 @@ Merci à ces personnes formidables qui ont contribué à ce projet ([emoji key](
           <sub><b>Dependabot</b></sub>
         </a>
         <br />
-        <a href="#maintenance-dependabot" title="Maintenance">🚧</a>
-        <a href="#security-dependabot" title="Security">🛡️</a>
+        <a href="#maintenance-dependabot" title="Maintenance"></a>
+        <a href="#security-dependabot" title="Security"></a>
       </td>
       <td align="center" valign="top" width="14.28%">
         <a href="https://github.com/features/copilot">
@@ -427,8 +427,8 @@ Merci à ces personnes formidables qui ont contribué à ce projet ([emoji key](
         </a>
         <br />
         <a href="https://github.com/HordRicJr/HordricWeather/commits?author=copilot" title="Code">💻</a>
-        <a href="#ideas-copilot" title="Ideas">🤔</a>
-        <a href="#tool-copilot" title="Tools">🔧</a>
+        <a href="#ideas-copilot" title="Ideas"></a>
+        <a href="#tool-copilot" title="Tools"></a>
       </td>
     </tr>
   </tbody>
@@ -440,16 +440,6 @@ Merci à ces personnes formidables qui ont contribué à ce projet ([emoji key](
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 Ce projet suit la spécification [all-contributors](https://github.com/all-contributors/all-contributors). Les contributions de toute nature sont les bienvenues !
-
----
-
-## �🙏 Remerciements
-
-- **OpenWeather** : Pour l'API météo gratuite
-- **Flutter Team** : Pour le framework incroyable
-- **Communauté Flutter** : Pour les packages open-source
-- **Hacktoberfest** : Pour encourager les contributions open-source
-- **GitHub Actions** : Pour l'automatisation CI/CD
 
 ---
 
