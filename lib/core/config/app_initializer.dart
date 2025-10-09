@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../services/user_service.dart';
-import 'user_onboarding_page.dart';
-import 'get_started.dart';
-import 'home.dart';
+import '../../shared/services/user_service.dart';
+import '../../features/onboarding/pages/user_onboarding_page.dart';
+import '../../features/onboarding/pages/get_started_page.dart';
+import '../../features/home/pages/home_page.dart';
 
 class AppInitializer extends StatefulWidget {
   const AppInitializer({super.key});

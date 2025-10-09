@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import '../services/user_service.dart';
-import 'widgets/app_logo.dart';
+import '../../../shared/services/user_service.dart';
+import '../../../shared/widgets/app_logo.dart';
 
 class UserOnboardingPage extends StatefulWidget {
   final VoidCallback onComplete;

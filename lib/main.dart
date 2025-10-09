@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'services/notification_service.dart';
-import 'services/background_service.dart';
-import 'services/weather_widget_service.dart';
-import 'services/daily_advice_service.dart';
-import 'services/user_service.dart';
-import 'ul/app_initializer.dart';
+import 'shared/services/notification_service.dart';
+import 'shared/services/background_service.dart';
+import 'shared/services/weather_widget_service.dart';
+import 'shared/services/daily_advice_service.dart';
+import 'shared/services/user_service.dart';
+import 'core/config/app_initializer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

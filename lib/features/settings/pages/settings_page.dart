@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../services/weather_widget_service.dart';
-import '../services/background_service.dart';
+import '../../../shared/services/weather_widget_service.dart';
+import '../../../shared/services/background_service.dart';
 import 'privacy_policy_page.dart';
 
 class SettingsPage extends StatefulWidget {

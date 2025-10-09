@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import '../models/constants.dart';
-import '../services/notification_service.dart';
+import '../../shared/models/constants.dart';
+import '../../shared/services/notification_service.dart';
 import 'widgets/app_logo.dart';
 import 'welcome.dart';
 

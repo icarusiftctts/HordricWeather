@@ -5,14 +5,14 @@ import 'package:intl/intl.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:shimmer/shimmer.dart';
-import '../models/city.dart';
-import '../models/constants.dart';
-import '../services/notification_service.dart';
-import '../services/weather_widget_service.dart';
-import 'widgets/weather_item.dart';
-import 'detail_page.dart';
-import 'settings_page.dart';
-import 'advice_page.dart';
+import '../../../shared/models/city.dart';
+import '../../../core/constants/constants.dart';
+import '../../../shared/services/notification_service.dart';
+import '../../../shared/services/weather_widget_service.dart';
+import '../widgets/weather_item.dart';
+import '../../weather/pages/detail_page.dart';
+import '../../settings/pages/settings_page.dart';
+import '../../advice/pages/advice_page.dart';
 import 'welcome.dart';
 
 class Home extends StatefulWidget {

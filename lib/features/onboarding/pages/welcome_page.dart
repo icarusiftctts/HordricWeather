@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import '../models/city.dart';
-import '../models/constants.dart';
-import '../services/location_service.dart';
-import 'home.dart';
-import 'settings_page.dart';
+import '../../../shared/models/city.dart';
+import '../../../core/constants/constants.dart';
+import '../../../shared/services/location_service.dart';
+import '../../home/pages/home_page.dart';
+import '../../settings/pages/settings_page.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});

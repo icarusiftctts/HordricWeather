@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:intl/intl.dart';
-import 'package:hordricweather/ul/widgets/weather_item.dart';
-import 'package:hordricweather/ul/welcome.dart';
+import '../../home/widgets/weather_item.dart';
+import '../../onboarding/pages/welcome_page.dart';
 
 class DetailPage extends StatefulWidget {
   final List<Map<String, dynamic>> consolidatedWeatherList;

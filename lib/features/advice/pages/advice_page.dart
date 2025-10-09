@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import '../models/constants.dart';
-import '../services/clothing_advice_service.dart';
-import '../services/air_quality_service.dart';
+import '../../../core/constants/constants.dart';
+import '../../../shared/services/clothing_advice_service.dart';
+import '../../../shared/services/air_quality_service.dart';
 
 class AdvicePage extends StatefulWidget {
   final Map<String, dynamic>? weatherData;

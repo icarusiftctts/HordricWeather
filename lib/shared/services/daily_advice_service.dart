@@ -1,6 +1,6 @@
 import 'dart:async';
-import '../services/notification_service.dart';
-import '../services/background_service.dart';
+import 'notification_service.dart';
+import 'background_service.dart';
 
 class DailyAdviceService {
   static Timer? _dailyTimer;

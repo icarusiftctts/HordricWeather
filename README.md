@@ -93,37 +93,86 @@ HordricWeather est une application météo moderne et élégante développée av
 
 ```
 lib/
-├── main.dart                           : Point d'entrée de l'application
-├── ul/
-│   ├── get_started.dart                : Écran de démarrage avec logo animé
-│   ├── home.dart                       : Écran principal météo
-│   ├── detail_page.dart                : Page de détails (prévisions horaires)
-│   ├── welcome.dart                    : Écran de sélection des villes
-│   ├── settings_page.dart              : Paramètres et notifications
-│   ├── user_onboarding_page.dart       : Onboarding première utilisation
-│   ├── privacy_policy_page.dart        : Page politique de confidentialité
-│   └── widgets/
-│       ├── weather_item.dart           : Widget élément météo
-│       └── app_logo.dart               : Widget logo réutilisable
-├── models/
-│   └── constants.dart                  : Constantes de l'application
-├── services/
-│   ├── notification_service.dart       : Gestion des notifications
-│   ├── background_service.dart         : Service arrière-plan (mises à jour)
-│   ├── weather_widget_service.dart     : Service widget Android
-│   ├── user_service.dart               : Service utilisateur
-│   ├── air_quality_service.dart        : Service qualité de l'air
-│   └── clothing_advice_service.dart    : Service conseils vestimentaires
-└── pages/
-    └── advice_page.dart                : Page conseils (météo + qualité air)
+├── main.dart                              : Point d'entrée de l'application
+│
+├── core/                                  : Code de base réutilisable
+│   ├── constants/
+│   │   └── constants.dart                 : Constantes globales (couleurs, API key)
+│   └── config/
+│       └── app_initializer.dart           : Initialisation et routing de l'app
+│
+├── features/                              : Fonctionnalités par domaine
+│   ├── home/                              : Page d'accueil météo
+│   │   ├── pages/
+│   │   │   └── home_page.dart             : Écran principal avec météo actuelle
+│   │   └── widgets/
+│   │       └── weather_item.dart          : Widget élément météo réutilisable
+│   │
+│   ├── weather/                           : Détails météo
+│   │   └── pages/
+│   │       └── detail_page.dart           : Page prévisions horaires détaillées
+│   │
+│   ├── settings/                          : Paramètres et configuration
+│   │   └── pages/
+│   │       ├── settings_page.dart         : Page paramètres et notifications
+│   │       └── privacy_policy_page.dart   : Politique de confidentialité
+│   │
+│   ├── advice/                            : Conseils personnalisés
+│   │   └── pages/
+│   │       └── advice_page.dart           : Conseils météo + qualité de l'air
+│   │
+│   └── onboarding/                        : Première utilisation
+│       └── pages/
+│           ├── get_started_page.dart      : Écran de démarrage avec logo animé
+│           ├── welcome_page.dart          : Sélection des villes favorites
+│           └── user_onboarding_page.dart  : Onboarding utilisateur
+│
+└── shared/                                : Ressources partagées
+    ├── models/
+    │   └── city.dart                      : Modèle de données Ville (2600+ villes)
+    │
+    ├── services/                          : Services métier
+    │   ├── notification_service.dart      : Gestion des notifications push
+    │   ├── background_service.dart        : Service arrière-plan (mises à jour)
+    │   ├── weather_widget_service.dart    : Service widget Android natif
+    │   ├── user_service.dart              : Gestion utilisateur et préférences
+    │   ├── location_service.dart          : Géolocalisation GPS
+    │   ├── air_quality_service.dart       : API qualité de l'air
+    │   ├── clothing_advice_service.dart   : Conseils vestimentaires intelligents
+    │   └── daily_advice_service.dart      : Service conseils quotidiens
+    │
+    └── widgets/                           : Widgets partagés
+        └── app_logo.dart                  : Logo animé réutilisable
 
 assets/
-├── img.png                             : Logo principal de l'application
-└── [autres icônes météo]               : Icônes pour conditions météo
+├── Logo.png                               : Logo principal HordricWeather
+├── clear.png, clouds.png, rain.png...     : Icônes conditions météo
+└── [autres assets]                        : Icônes UI (humidité, vent, etc.)
 
 android/
-└── app/src/main/res/mipmap-*/         : Icônes launcher générées
+├── app/
+│   ├── build.gradle                       : Configuration build Android
+│   ├── upload-keystore.jks                : Clé de signature Play Store
+│   └── src/main/res/
+│       ├── layout/                        : Layouts widget Android
+│       ├── xml/                           : Configuration widget
+│       └── mipmap-*/                      : Icônes launcher (hdpi à xxxhdpi)
+└── key.properties                         : Propriétés keystore (non versionné)
 ```
+
+### 🏗️ Architecture
+
+HordricWeather suit l'architecture **Feature-First** recommandée par Flutter :
+
+- **`core/`** : Configuration et constantes globales
+- **`features/`** : Fonctionnalités organisées par domaine métier (home, weather, settings, etc.)
+- **`shared/`** : Code réutilisable (models, services, widgets communs)
+
+Cette structure facilite :
+- 📦 La scalabilité du projet
+- 🧪 Les tests unitaires et d'intégration
+- 👥 Le travail en équipe
+- 🔄 La maintenance et les évolutions
 
 ---
 

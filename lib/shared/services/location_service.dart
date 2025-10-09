@@ -1,7 +1,7 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../models/constants.dart';
+import '../../core/constants/constants.dart';
 
 class LocationService {
   /// Ouvre les paramètres de localisation de l'appareil
