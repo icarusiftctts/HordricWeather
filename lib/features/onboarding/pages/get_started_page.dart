@@ -5,6 +5,7 @@ import 'package:hordricweather/features/onboarding/pages/welcome_page.dart';
 import 'package:hordricweather/shared/services/notification_service.dart';
 import 'package:hordricweather/shared/widgets/app_logo.dart';
 
+
 class GetStarted extends StatefulWidget {
   const GetStarted({super.key});
 

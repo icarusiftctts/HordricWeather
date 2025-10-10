@@ -31,11 +31,7 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace = "meteo.apk.meteo"
     compileSdk = 36
-    ndkVersion = "27.0.12077973"
-
-    buildFeatures {
-        buildConfig = true
-    }
+    ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -49,8 +45,13 @@ android {
 
     defaultConfig {
         applicationId = "meteo.apk.meteo"
-        minSdk = 23
-        targetSdk = 36
+        minSdkVersion flutter.minSdkVersion
+        versionCode 1
+        versionName "1.0"
+        // You can update the following values to match your application needs.
+        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
     }
