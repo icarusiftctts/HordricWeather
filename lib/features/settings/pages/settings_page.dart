@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:hordricweather/features/home/pages/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../shared/services/weather_widget_service.dart';
 import '../../../shared/services/background_service.dart';
@@ -186,7 +187,19 @@ class _SettingsPageState extends State<SettingsPage> {
                         icon: Icons.delete_outline,
                         title: 'Réinitialiser les données',
                         subtitle: 'Supprimer toutes vos données',
-                        onTap: () => _showResetDialog(),
+                        onTap: () {
+                          _showResetDialog().then((_) {
+                            Future.delayed(const Duration(milliseconds: 500),
+                                () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Home(),
+                                ),
+                              );
+                            });
+                          });
+                        },
                       ),
                       const SizedBox(height: 30),
                       _buildSectionTitle('📱 Actions'),
@@ -420,8 +433,8 @@ class _SettingsPageState extends State<SettingsPage> {
     ).animate().fadeIn(delay: 400.ms, duration: 600.ms).slideY(begin: 0.3);
   }
 
-  void _showResetDialog() {
-    showDialog(
+  Future<void> _showResetDialog() async {
+    return showDialog(
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: const Color(0xFF1B263B),
