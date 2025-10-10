@@ -14,6 +14,8 @@ import '../widgets/weather_item.dart';
 import '../../weather/pages/detail_page.dart';
 import '../../settings/pages/settings_page.dart';
 import '../../advice/pages/advice_page.dart';
+import '../../charts/pages/weather_charts_page.dart';
+import '../../charts/widgets/mini_chart_widget.dart';
 
 class Home extends StatefulWidget {
   final City? selectedCity;
