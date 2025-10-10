@@ -187,12 +187,12 @@ class _UserOnboardingPageState extends State<UserOnboardingPage>
           borderRadius: BorderRadius.circular(25),
           gradient: LinearGradient(
             colors: [
-              Colors.white.withOpacity(0.25),
-              Colors.white.withOpacity(0.15),
+              Colors.white.withOpacity(0.24),
+              Colors.white.withOpacity(0.20),
             ],
           ),
           border: Border.all(
-            color: Colors.white.withOpacity(0.3),
+            color: Colors.white.withOpacity(0.8),
             width: 1,
           ),
           boxShadow: [
@@ -204,18 +204,20 @@ class _UserOnboardingPageState extends State<UserOnboardingPage>
           ],
         ),
         child: TextFormField(
+          cursorColor: Colors.white,
+          cursorWidth: 3,
           controller: _nameController,
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
+            fontSize: 19,
+            fontWeight: FontWeight.bold,
           ),
           textAlign: TextAlign.center,
           decoration: InputDecoration(
             hintText: 'Votre prénom...',
             hintStyle: TextStyle(
-              color: Colors.white.withOpacity(0.7),
-              fontSize: 18,
+              color: Colors.white.withOpacity(0.9),
+              fontSize: 19,
             ),
             border: InputBorder.none,
             contentPadding: const EdgeInsets.symmetric(
@@ -225,7 +227,7 @@ class _UserOnboardingPageState extends State<UserOnboardingPage>
             prefixIcon: Icon(
               Icons.person_outline,
               color: Colors.white.withOpacity(0.8),
-              size: 24,
+              size: 34,
             ),
             suffixIcon: _nameController.text.isNotEmpty
                 ? Icon(
@@ -281,7 +283,7 @@ class _UserOnboardingPageState extends State<UserOnboardingPage>
                   const Text(
                     'Commencer l\'aventure !',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 19,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
