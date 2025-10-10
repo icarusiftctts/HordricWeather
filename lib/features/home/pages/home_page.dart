@@ -448,6 +448,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   const SizedBox(height: 30),
                   _buildWeatherDetails(),
                   const SizedBox(height: 30),
+                  _buildChartsSection(),
+                  const SizedBox(height: 30),
                   _buildHourlyForecast(),
                   const SizedBox(height: 30),
                   _buildSelectedCities(),
@@ -565,6 +567,18 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           builder: (context) => const SettingsPage()),
                     );
                     break;
+                  case 'charts':
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => WeatherChartsPage(
+                          forecastData: consolidatedWeatherList,
+                          location: location,
+                          currentWeatherData: currentWeatherData,
+                        ),
+                      ),
+                    );
+                    break;
                   case 'cities':
                     Navigator.push(
                       context,
@@ -594,6 +608,16 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       Icon(Icons.lightbulb_outline, size: 20),
                       SizedBox(width: 12),
                       Text('Conseils'),
+                    ],
+                  ),
+                ),
+                PopupMenuItem<String>(
+                  value: 'charts',
+                  child: Row(
+                    children: [
+                      Icon(Icons.analytics_outlined, size: 20),
+                      SizedBox(width: 12),
+                      Text('Graphiques'),
                     ],
                   ),
                 ),
@@ -1066,6 +1090,16 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildChartsSection() {
+    if (consolidatedWeatherList.isEmpty) return Container();
+
+    return MiniChartWidget(
+      forecastData: consolidatedWeatherList,
+      location: location,
+      currentWeatherData: currentWeatherData,
     );
   }
 
