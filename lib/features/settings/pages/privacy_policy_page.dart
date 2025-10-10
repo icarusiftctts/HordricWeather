@@ -359,7 +359,7 @@ class PrivacyPolicyPage extends StatelessWidget {
           ),
           SizedBox(height: 15),
           Text(
-            'Version 1.0.0 | 8 octobre 2025',
+            'Version 1.0.1 | 9 octobre 2025',
             style: TextStyle(
               fontSize: 12,
               color: Colors.white60,

@@ -6,7 +6,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=for-the-badge)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)
 ![Flutter](https://img.shields.io/badge/Flutter-3.32.8-02569B?logo=flutter)
 ![Platform](https://img.shields.io/badge/platform-Android-brightgreen.svg)
 
