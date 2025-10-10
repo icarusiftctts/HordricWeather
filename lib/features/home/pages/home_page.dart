@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:hordricweather/features/onboarding/pages/welcome_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -13,7 +14,8 @@ import '../widgets/weather_item.dart';
 import '../../weather/pages/detail_page.dart';
 import '../../settings/pages/settings_page.dart';
 import '../../advice/pages/advice_page.dart';
-import 'welcome.dart';
+import '../../charts/widgets/mini_chart_widget.dart';
+import '../../charts/pages/weather_charts_page.dart';
 
 class Home extends StatefulWidget {
   final City? selectedCity;
@@ -448,6 +450,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   const SizedBox(height: 30),
                   _buildWeatherDetails(),
                   const SizedBox(height: 30),
+                  _buildChartsSection(),
+                  const SizedBox(height: 30),
                   _buildHourlyForecast(),
                   const SizedBox(height: 30),
                   _buildSelectedCities(),
@@ -565,6 +569,18 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           builder: (context) => const SettingsPage()),
                     );
                     break;
+                  case 'charts':
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => WeatherChartsPage(
+                          forecastData: consolidatedWeatherList,
+                          location: location,
+                          currentWeatherData: currentWeatherData,
+                        ),
+                      ),
+                    );
+                    break;
                   case 'cities':
                     Navigator.push(
                       context,
@@ -594,6 +610,16 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       Icon(Icons.lightbulb_outline, size: 20),
                       SizedBox(width: 12),
                       Text('Conseils'),
+                    ],
+                  ),
+                ),
+                PopupMenuItem<String>(
+                  value: 'charts',
+                  child: Row(
+                    children: [
+                      Icon(Icons.analytics_outlined, size: 20),
+                      SizedBox(width: 12),
+                      Text('Graphiques'),
                     ],
                   ),
                 ),
@@ -1066,6 +1092,16 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildChartsSection() {
+    if (consolidatedWeatherList.isEmpty) return Container();
+
+    return MiniChartWidget(
+      forecastData: consolidatedWeatherList,
+      location: location,
+      currentWeatherData: currentWeatherData,
     );
   }
 
