@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import '../../../core/theme/app_theme.dart';
 import '../../../shared/services/user_service.dart';
 import '../../../shared/widgets/app_logo.dart';
 
@@ -84,7 +85,7 @@ class _UserOnboardingPageState extends State<UserOnboardingPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors de la sauvegarde: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppTheme.error,
           ),
         );
       }
@@ -104,22 +105,12 @@ class _UserOnboardingPageState extends State<UserOnboardingPage>
         child: Container(
           width: size.width,
           height: size.height,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                const Color(0xFF1E3C72),
-                const Color(0xFF2A5298),
-                const Color(0xFF1E3C72),
-                const Color(0xFF4A90E2),
-              ],
-              stops: const [0.0, 0.3, 0.7, 1.0],
-            ),
+          decoration: const BoxDecoration(
+            gradient: AppTheme.onboardingGradient,
           ),
           child: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(AppTheme.spacingXXL),
               child: Column(
                 children: [
                   const Spacer(flex: 2),
@@ -163,13 +154,13 @@ class _UserOnboardingPageState extends State<UserOnboardingPage>
                   shape: BoxShape.circle,
                   gradient: LinearGradient(
                     colors: [
-                      Colors.white.withOpacity(0.3),
-                      Colors.white.withOpacity(0.1),
+                      AppTheme.overlay30,
+                      AppTheme.overlay10,
                     ],
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.white.withOpacity(0.3),
+                      color: AppTheme.overlay30,
                       blurRadius: 20,
                       spreadRadius: 5,
                     ),
@@ -188,13 +179,13 @@ class _UserOnboardingPageState extends State<UserOnboardingPage>
         const SizedBox(height: 32),
 
         // Titre principal
-        Text(
+        const Text(
           'Bienvenue dans\nHordricWeather !',
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: AppTheme.textOnPrimary,
             height: 1.2,
           ),
         ).animate().fadeIn(delay: 400.ms).slideY(begin: 0.3),
@@ -207,7 +198,7 @@ class _UserOnboardingPageState extends State<UserOnboardingPage>
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 18,
-            color: Colors.white.withOpacity(0.9),
+            color: AppTheme.textOnPrimary.withOpacity(0.9),
             height: 1.4,
           ),
         ).animate().fadeIn(delay: 600.ms).slideY(begin: 0.3),
@@ -220,31 +211,31 @@ class _UserOnboardingPageState extends State<UserOnboardingPage>
       key: _formKey,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(AppTheme.radiusXXL),
           gradient: LinearGradient(
             colors: [
-              Colors.white.withOpacity(0.24),
-              Colors.white.withOpacity(0.20),
+              AppTheme.overlay25,
+              AppTheme.overlay20,
             ],
           ),
           border: Border.all(
-            color: Colors.white.withOpacity(0.8),
+            color: AppTheme.textOnPrimary.withOpacity(0.8),
             width: 1,
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: AppTheme.darkOverlay10,
               blurRadius: 20,
               offset: const Offset(0, 10),
             ),
           ],
         ),
         child: TextFormField(
-          cursorColor: Colors.white,
+          cursorColor: AppTheme.textOnPrimary,
           cursorWidth: 3,
           controller: _nameController,
           style: const TextStyle(
-            color: Colors.white,
+            color: AppTheme.textOnPrimary,
             fontSize: 19,
             fontWeight: FontWeight.bold,
           ),
@@ -254,23 +245,23 @@ class _UserOnboardingPageState extends State<UserOnboardingPage>
           decoration: InputDecoration(
             hintText: 'Votre prénom...',
             hintStyle: TextStyle(
-              color: Colors.white.withOpacity(0.9),
+              color: AppTheme.textOnPrimary.withOpacity(0.9),
               fontSize: 19,
             ),
             border: InputBorder.none,
             contentPadding: const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 20,
+              horizontal: AppTheme.spacingXXL,
+              vertical: AppTheme.spacingXL,
             ),
             prefixIcon: Icon(
               Icons.person_outline,
-              color: Colors.white.withOpacity(0.8),
+              color: AppTheme.textOnPrimary.withOpacity(0.8),
               size: 34,
             ),
             suffixIcon: _nameController.text.isNotEmpty
                 ? Icon(
                     Icons.check_circle_outline,
-                    color: Colors.green.withOpacity(0.8),
+                    color: AppTheme.success.withOpacity(0.8),
                     size: 24,
                   )
                 : null,
@@ -294,31 +285,31 @@ class _UserOnboardingPageState extends State<UserOnboardingPage>
 
   Widget _buildSubmitButton() {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
+      duration: AppTheme.animationFast,
       width: _isSubmitting ? 60 : double.infinity,
       height: 60,
       child: ElevatedButton(
         onPressed: _isSubmitting ? null : _submitName,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
-          foregroundColor: const Color(0xFF1E3C72),
+          backgroundColor: AppTheme.cardBackground,
+          foregroundColor: AppTheme.gradientDeep,
           elevation: 8,
-          shadowColor: Colors.black.withOpacity(0.3),
+          shadowColor: AppTheme.darkOverlay20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(_isSubmitting ? 30 : 15),
           ),
         ),
         child: _isSubmitting
             ? const CircularProgressIndicator(
-                color: Color(0xFF1E3C72),
+                color: AppTheme.gradientDeep,
                 strokeWidth: 3,
               )
-            : Row(
+            : const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.rocket_launch, size: 24),
-                  const SizedBox(width: 12),
-                  const Text(
+                  Icon(Icons.rocket_launch, size: 24),
+                  SizedBox(width: 12),
+                  Text(
                     'Commencer l\'aventure !',
                     style: TextStyle(
                       fontSize: 19,

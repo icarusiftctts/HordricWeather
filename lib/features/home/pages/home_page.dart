@@ -8,6 +8,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../shared/models/city.dart';
 import '../../../core/constants/constants.dart';
+// import '../../../core/theme/app_theme.dart';
 import '../../../shared/services/notification_service.dart';
 import '../../../shared/services/weather_widget_service.dart';
 import '../widgets/weather_item.dart';
@@ -428,7 +429,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             myConstants.primaryColor,
             myConstants.primaryColor.withOpacity(0.8),
             myConstants.secondaryColor.withOpacity(0.6),
-            Colors.grey[50]!,
+            const Color.fromARGB(255, 118, 207, 248),
           ],
           stops: [0.0, 0.4, 0.7, 1.0],
         ),
@@ -591,15 +592,19 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     break;
                 }
               },
-              icon: Icon(Icons.more_vert, color: Colors.white, size: 24),
+              icon: const Icon(Icons.more_vert,
+                  color: Color(0xFFFFFFFF),
+                  size: 24), // Pure white for better visibility
+              color: Colors.white, // Background color of the popup
               itemBuilder: (BuildContext context) => [
                 PopupMenuItem<String>(
                   value: 'detail',
                   child: Row(
                     children: [
-                      Icon(Icons.visibility, size: 20),
+                      Icon(Icons.visibility,
+                          size: 20, color: myConstants.primaryColor),
                       SizedBox(width: 12),
-                      Text('Détails'),
+                      Text('Détails', style: TextStyle(color: Colors.black87)),
                     ],
                   ),
                 ),
@@ -607,9 +612,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   value: 'advice',
                   child: Row(
                     children: [
-                      Icon(Icons.lightbulb_outline, size: 20),
+                      Icon(Icons.lightbulb_outline,
+                          size: 20, color: myConstants.primaryColor),
                       SizedBox(width: 12),
-                      Text('Conseils'),
+                      Text('Conseils', style: TextStyle(color: Colors.black87)),
                     ],
                   ),
                 ),
@@ -617,9 +623,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   value: 'charts',
                   child: Row(
                     children: [
-                      Icon(Icons.analytics_outlined, size: 20),
+                      Icon(Icons.analytics_outlined,
+                          size: 20, color: myConstants.primaryColor),
                       SizedBox(width: 12),
-                      Text('Graphiques'),
+                      Text('Graphiques',
+                          style: TextStyle(color: Colors.black87)),
                     ],
                   ),
                 ),
@@ -627,9 +635,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   value: 'cities',
                   child: Row(
                     children: [
-                      Icon(Icons.location_city, size: 20),
+                      Icon(Icons.location_city,
+                          size: 20, color: myConstants.primaryColor),
                       SizedBox(width: 12),
-                      Text('Changer de ville'),
+                      Text('Changer de ville',
+                          style: TextStyle(color: Colors.black87)),
                     ],
                   ),
                 ),
@@ -637,9 +647,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   value: 'settings',
                   child: Row(
                     children: [
-                      Icon(Icons.settings_outlined, size: 20),
+                      Icon(Icons.settings_outlined,
+                          size: 20, color: myConstants.primaryColor),
                       SizedBox(width: 12),
-                      Text('Paramètres'),
+                      Text('Paramètres',
+                          style: TextStyle(color: Colors.black87)),
                     ],
                   ),
                 ),

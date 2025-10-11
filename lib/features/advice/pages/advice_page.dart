@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/constants/constants.dart';
+import '../../../core/theme/app_theme.dart';
 import '../../../shared/services/clothing_advice_service.dart';
 import '../../../shared/services/air_quality_service.dart';
 
@@ -63,7 +64,7 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
               myConstants.primaryColor,
               myConstants.primaryColor.withOpacity(0.8),
               myConstants.secondaryColor.withOpacity(0.6),
-              Colors.grey[50]!,
+              const Color.fromARGB(255, 129, 210, 248),
             ],
             stops: [0.0, 0.3, 0.6, 1.0],
           ),
@@ -92,34 +93,37 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
 
   Widget _buildHeader(Constants myConstants) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(AppTheme.spacingXL),
       child: Row(
         children: [
           IconButton(
             onPressed: () => Navigator.pop(context),
-            icon: Icon(Icons.arrow_back_ios, color: Colors.white, size: 24),
+            icon: const Icon(Icons.arrow_back_ios,
+                color: AppTheme.textOnPrimary, size: AppTheme.iconSizeL),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: AppTheme.radiusM),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Conseils & Activités',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: AppTheme.textOnPrimary,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Row(
                   children: [
-                    Icon(Icons.location_on, color: Colors.white70, size: 16),
+                    const Icon(Icons.location_on,
+                        color: Colors.white70, size: AppTheme.iconSizeS),
                     const SizedBox(width: 4),
                     Text(
                       widget.location,
-                      style: TextStyle(fontSize: 16, color: Colors.white70),
+                      style:
+                          const TextStyle(fontSize: 16, color: Colors.white70),
                     ),
                   ],
                 ),
@@ -133,21 +137,21 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
 
   Widget _buildTabBar(Constants myConstants) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: AppTheme.spacingXL),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.15),
-        borderRadius: BorderRadius.circular(25),
-        border: Border.all(color: Colors.white.withOpacity(0.3)),
+        color: AppTheme.overlay15,
+        borderRadius: BorderRadius.circular(AppTheme.radiusXXL),
+        border: Border.all(color: AppTheme.overlay30),
       ),
       child: TabBar(
         controller: _tabController,
         indicator: BoxDecoration(
-          color: Colors.white.withOpacity(0.3),
-          borderRadius: BorderRadius.circular(25),
+          color: AppTheme.overlay30,
+          borderRadius: BorderRadius.circular(AppTheme.radiusXXL),
         ),
-        labelColor: Colors.white,
+        labelColor: AppTheme.textOnPrimary,
         unselectedLabelColor: Colors.white70,
-        tabs: [
+        tabs: const [
           Tab(icon: Icon(Icons.checkroom), text: 'Tenue'),
           Tab(icon: Icon(Icons.sports_soccer), text: 'Activités'),
           Tab(icon: Icon(Icons.air), text: 'Air'),

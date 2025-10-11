@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hordricweather/features/home/pages/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../core/theme/app_theme.dart';
 import '../../../shared/services/weather_widget_service.dart';
 import '../../../shared/services/background_service.dart';
 import 'privacy_policy_page.dart';
@@ -58,15 +59,8 @@ class _SettingsPageState extends State<SettingsPage> {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              const Color(0xFF2E3192),
-              const Color(0xFF1BCEDF),
-            ],
-          ),
+        decoration: const BoxDecoration(
+          gradient: AppTheme.screenGradient,
         ),
         child: SafeArea(
           child: Column(
@@ -74,7 +68,7 @@ class _SettingsPageState extends State<SettingsPage> {
               _buildAppBar(),
               Expanded(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(AppTheme.spacingXL),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -133,7 +127,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               }
                             : null,
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: AppTheme.spacing3XL),
                       _buildSectionTitle('📱 Widget & Arrière-plan'),
                       _buildSettingCard(
                         icon: Icons.widgets,
@@ -167,7 +161,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           }
                         },
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: AppTheme.spacing3XL),
                       _buildSectionTitle('ℹ️ Informations'),
                       _buildActionButton(
                         icon: Icons.privacy_tip_outlined,
@@ -182,7 +176,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           );
                         },
                       ),
-                      const SizedBox(height: 15),
+                      const SizedBox(height: AppTheme.radiusL),
                       _buildActionButton(
                         icon: Icons.delete_outline,
                         title: 'Réinitialiser les données',
@@ -201,7 +195,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           });
                         },
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: AppTheme.spacing3XL),
                       _buildSectionTitle('📱 Actions'),
                       _buildActionButton(
                         icon: Icons.refresh,
@@ -210,21 +204,21 @@ class _SettingsPageState extends State<SettingsPage> {
                         onTap: () async {
                           await WeatherWidgetService.updateWidget();
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
+                            const SnackBar(
                               content: Text('Widget mis à jour!'),
-                              backgroundColor: Colors.green,
+                              backgroundColor: AppTheme.success,
                             ),
                           );
                         },
                       ),
-                      const SizedBox(height: 15),
+                      const SizedBox(height: AppTheme.radiusL),
                       _buildActionButton(
                         icon: Icons.info_outline,
                         title: 'À propos du widget',
                         subtitle: 'Instructions d\'installation',
                         onTap: () => _showWidgetInstructions(),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: AppTheme.spacingXL),
                     ],
                   ),
                 ),
@@ -238,28 +232,28 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildAppBar() {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(AppTheme.spacingXL),
       child: Row(
         children: [
           Container(
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(12),
+              color: AppTheme.overlay20,
+              borderRadius: BorderRadius.circular(AppTheme.radiusM),
             ),
             child: IconButton(
               onPressed: () => Navigator.pop(context),
               icon: const Icon(
                 Icons.arrow_back_ios,
-                color: Colors.white,
-                size: 20,
+                color: AppTheme.textOnPrimary,
+                size: AppTheme.iconSizeM,
               ),
             ),
           ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.3),
-          const SizedBox(width: 20),
-          Text(
+          const SizedBox(width: AppTheme.spacingXL),
+          const Text(
             'Paramètres',
             style: TextStyle(
-              color: Colors.white,
+              color: AppTheme.textOnPrimary,
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
@@ -271,11 +265,11 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildSectionTitle(String title) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 15),
+      padding: const EdgeInsets.only(bottom: AppTheme.radiusL),
       child: Text(
         title,
-        style: TextStyle(
-          color: Colors.white,
+        style: const TextStyle(
+          color: AppTheme.textOnPrimary,
           fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
@@ -291,46 +285,33 @@ class _SettingsPageState extends State<SettingsPage> {
     required Function(bool)? onChanged,
   }) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 15),
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Colors.white.withOpacity(0.2),
-            Colors.white.withOpacity(0.1),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: Colors.white.withOpacity(0.3),
-          width: 1,
-        ),
-      ),
+      margin: const EdgeInsets.only(bottom: AppTheme.radiusL),
+      padding: const EdgeInsets.all(AppTheme.spacingXL),
+      decoration:
+          AppTheme.containerDecoration(borderRadius: AppTheme.spacingXL),
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(AppTheme.radiusM),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(12),
+              color: AppTheme.overlay20,
+              borderRadius: BorderRadius.circular(AppTheme.radiusM),
             ),
             child: Icon(
               icon,
-              color: Colors.white,
-              size: 24,
+              color: AppTheme.textOnPrimary,
+              size: AppTheme.iconSizeL,
             ),
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: AppTheme.spacingL),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
-                  style: TextStyle(
-                    color: Colors.white,
+                  style: const TextStyle(
+                    color: AppTheme.textOnPrimary,
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
@@ -339,7 +320,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 Text(
                   subtitle,
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.7),
+                    color: AppTheme.textOnPrimary.withOpacity(0.7),
                     fontSize: 14,
                   ),
                 ),
@@ -349,10 +330,10 @@ class _SettingsPageState extends State<SettingsPage> {
           Switch(
             value: value,
             onChanged: onChanged,
-            activeColor: Colors.white,
-            activeTrackColor: Colors.white.withOpacity(0.3),
-            inactiveThumbColor: Colors.white.withOpacity(0.5),
-            inactiveTrackColor: Colors.white.withOpacity(0.1),
+            activeColor: AppTheme.cardBackground,
+            activeTrackColor: AppTheme.overlay30,
+            inactiveThumbColor: AppTheme.overlay20,
+            inactiveTrackColor: AppTheme.overlay10,
           ),
         ],
       ),
@@ -368,45 +349,34 @@ class _SettingsPageState extends State<SettingsPage> {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.white.withOpacity(0.15),
-              Colors.white.withOpacity(0.05),
-            ],
-          ),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: Colors.white.withOpacity(0.2),
-            width: 1,
-          ),
+        padding: const EdgeInsets.all(AppTheme.spacingXL),
+        decoration: AppTheme.containerDecoration(
+          borderRadius: AppTheme.spacingXL,
+          backgroundColor: AppTheme.overlay15,
         ),
         child: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(AppTheme.radiusM),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(12),
+                color: AppTheme.overlay20,
+                borderRadius: BorderRadius.circular(AppTheme.radiusM),
               ),
               child: Icon(
                 icon,
-                color: Colors.white,
-                size: 24,
+                color: AppTheme.textOnPrimary,
+                size: AppTheme.iconSizeL,
               ),
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: AppTheme.spacingL),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
-                      color: Colors.white,
+                    style: const TextStyle(
+                      color: AppTheme.textOnPrimary,
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     ),
@@ -415,7 +385,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   Text(
                     subtitle,
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.7),
+                      color: AppTheme.textOnPrimary.withOpacity(0.7),
                       fontSize: 14,
                     ),
                   ),
@@ -424,8 +394,8 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             Icon(
               Icons.arrow_forward_ios,
-              color: Colors.white.withOpacity(0.7),
-              size: 16,
+              color: AppTheme.textOnPrimary.withOpacity(0.7),
+              size: AppTheme.spacingL,
             ),
           ],
         ),
@@ -437,14 +407,15 @@ class _SettingsPageState extends State<SettingsPage> {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFF1B263B),
+        backgroundColor: AppTheme.gradientDeep,
         title: const Row(
           children: [
-            Icon(Icons.warning_amber_rounded, color: Colors.orange, size: 28),
+            Icon(Icons.warning_amber_rounded,
+                color: AppTheme.warning, size: 28),
             SizedBox(width: 10),
             Text(
               'Réinitialiser les données',
-              style: TextStyle(color: Colors.white, fontSize: 18),
+              style: TextStyle(color: AppTheme.textOnPrimary, fontSize: 18),
             ),
           ],
         ),
@@ -474,14 +445,14 @@ class _SettingsPageState extends State<SettingsPage> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('Données réinitialisées avec succès'),
-                    backgroundColor: Colors.green,
+                    backgroundColor: AppTheme.success,
                   ),
                 );
               }
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red,
-              foregroundColor: Colors.white,
+              backgroundColor: AppTheme.error,
+              foregroundColor: AppTheme.textOnPrimary,
             ),
             child: const Text('Supprimer'),
           ),
