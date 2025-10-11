@@ -187,14 +187,29 @@ This structure facilitates:
 
 ## 🛠️ Installation and Build
 
-### Prerequisites
+### 🏗️ Prerequisites
 
-- Flutter 3.32.8 or higher
-- Dart 3.8.1 or higher
+- Flutter : 3.32.8 or higher
+- Dart : 3.8.1 or higher
+- IDE: A configured code editor like VS Code with the Flutter extension or Android Studio
+- Git: For cloning the repository.
 - Android SDK 34 or higher
 - OpenWeather API account (free): [https://openweathermap.org/api](https://openweathermap.org/api)
 
-### 📥 Installation
+
+
+### ⚙️ Environment Setup
+If you are new to Flutter, follow the official documentation to install the SDK on your operating system:
+
+Install Flutter on Windows - https://docs.flutter.dev/get-started
+
+Install Flutter on macOS - https://docs.flutter.dev/get-started
+
+Install Flutter on Linux - https://docs.flutter.dev/get-started
+
+After installation, run flutter doctor in your terminal to verify that your environment is ready. Address any issues it reports.
+
+### 📥Project Installation
 
 #### 1. Clone the Repository
 ```bash
@@ -202,27 +217,34 @@ git clone https://github.com/HordRicJr/HordricWeather.git
 cd HordricWeather
 ```
 
-#### 2. Install Dependencies
+### 2: Configure your IDE
+Open the cloned HordricWeather folder in VS Code or Android Studio. Your IDE should automatically detect it as a Flutter project.
+
+#### 3. Install Dependencies
 ```bash
 flutter pub get
 ```
 
-#### 3. Configure OpenWeather API
+#### 4. Configure OpenWeather API
 The project already uses a configured OpenWeather API key. If you want to use your own key:
 
 1. Create an account on [OpenWeather](https://openweathermap.org/api)
 2. Get your free API key
 3. Replace the key in `lib/core/constants/constants.dart`:
 ```dart
-static const String apiKey = 'YOUR_API_KEY';
+// lib/core/constants/constants.dart
+class Constants {
+  static const String apiKey = 'YOUR_API_KEY'; // <-- Paste your key here
+  // ... other constants
+}
 ```
 
-#### 4. Generate Launcher Icons
+#### 5. Generate Launcher Icons
 ```bash
 dart run flutter_launcher_icons
 ```
 
-#### 5. Run the Application
+#### 6. Run the Application
 
 **Debug Mode**
 ```bash
@@ -240,6 +262,30 @@ flutter build appbundle --release
 ```
 
 ---
+
+### 🤖 Troubleshooting Common Errors
+
+# Error: flutter command not found
+
+Solution: Ensure the Flutter SDK's bin directory is in your system's PATH variable. Re-run flutter doctor to confirm.
+
+# Error: Android license status unknown
+
+Solution: Run flutter doctor --android-licenses and accept all the licenses.
+
+# Error: Gradle task assembleDebug failed with exit code 1
+
+Solution: This can have many causes. Try these steps:
+
+Run flutter clean to remove old build files.
+
+Ensure your Java Development Kit (JDK) version is compatible. This project is configured for Java 17.
+
+Check for network issues that might prevent Gradle from downloading dependencies.
+
+## App runs but shows an error/no data
+
+Solution: Double-check that your OpenWeather API key is correct and active. A new key can take some time to become active.
 
 ## 📦 Main Dependencies
 
