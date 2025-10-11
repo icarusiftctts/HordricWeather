@@ -19,14 +19,45 @@ class _AppInitializerState extends State<AppInitializer> {
   }
 
   Future<void> _checkFirstLaunch() async {
-    // Petite attente pour éviter les problèmes de timing
-    await Future.delayed(const Duration(milliseconds: 100));
+    try {
+      // Petite attente pour éviter les problèmes de timing
+      await Future.delayed(const Duration(milliseconds: 100));
 
-    final isFirstLaunch = await UserService.isFirstLaunch();
+      final isFirstLaunch = await UserService.isFirstLaunch();
+      print('Is first launch: $isFirstLaunch');
 
-    if (mounted) {
-      if (isFirstLaunch) {
-        // Première utilisation - afficher l'onboarding
+      if (mounted) {
+        if (isFirstLaunch) {
+          print('First launch - showing onboarding');
+          // Première utilisation - afficher l'onboarding
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => UserOnboardingPage(
+                onComplete: () {
+                  print('Onboarding complete - navigating to GetStarted');
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => const GetStarted(),
+                    ),
+                  );
+                },
+              ),
+            ),
+          );
+        } else {
+          print('Existing user - going to home');
+          // Utilisateur existant - aller directement vers l'ecran principal
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const Home(),
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      print('Error in _checkFirstLaunch: $e');
+      // En cas d'erreur, afficher l'onboarding par défaut
+      if (mounted) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) => UserOnboardingPage(
@@ -38,13 +69,6 @@ class _AppInitializerState extends State<AppInitializer> {
                 );
               },
             ),
-          ),
-        );
-      } else {
-        // Utilisateur existant - aller directement vers l'ecran principal
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => const Home(),
           ),
         );
       }

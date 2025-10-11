@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'core/config/app_initializer.dart';
+import 'core/theme/app_theme.dart';
 import 'shared/services/background_service.dart';
 import 'shared/services/daily_advice_service.dart';
 import 'shared/services/notification_service.dart';
@@ -51,11 +52,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'HordricWeather',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff90B2F9)),
-        useMaterial3: true,
-        fontFamily: 'Roboto',
-      ),
+      theme: AppTheme.lightTheme,
       home: const AppInitializer(),
       debugShowCheckedModeBanner: false,
     );
