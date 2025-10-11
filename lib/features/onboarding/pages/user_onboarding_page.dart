@@ -46,18 +46,48 @@ class _UserOnboardingPageState extends State<UserOnboardingPage>
   }
 
   Future<void> _submitName() async {
-    if (!_formKey.currentState!.validate()) return;
+    print('=== SUBMIT NAME BUTTON CLICKED ===');
+    print('Form is valid: ${_formKey.currentState?.validate()}');
 
+    if (!_formKey.currentState!.validate()) {
+      print('Form validation failed');
+      return;
+    }
+
+    print('Setting isSubmitting to true');
     setState(() => _isSubmitting = true);
 
-    // Animation de soumission
-    await Future.delayed(const Duration(milliseconds: 1500));
+    try {
+      // Animation de soumission
+      print('Waiting for animation delay...');
+      await Future.delayed(const Duration(milliseconds: 1500));
 
-    await UserService.setUserName(_nameController.text);
-    await UserService.markFirstLaunchComplete();
+      print('Saving user name: ${_nameController.text}');
+      await UserService.setUserName(_nameController.text);
 
-    if (mounted) {
-      widget.onComplete();
+      print('Marking first launch complete');
+      await UserService.markFirstLaunchComplete();
+
+      print('User data saved successfully, proceeding to next screen');
+
+      if (mounted) {
+        print('Widget is mounted, calling onComplete()');
+        widget.onComplete();
+      } else {
+        print('WARNING: Widget is not mounted!');
+      }
+    } catch (e) {
+      print('Error in _submitName: $e');
+      setState(() => _isSubmitting = false);
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Erreur lors de la sauvegarde: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     }
   }
 
@@ -66,44 +96,50 @@ class _UserOnboardingPageState extends State<UserOnboardingPage>
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Container(
-        width: size.width,
-        height: size.height,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              const Color(0xFF1E3C72),
-              const Color(0xFF2A5298),
-              const Color(0xFF1E3C72),
-              const Color(0xFF4A90E2),
-            ],
-            stops: const [0.0, 0.3, 0.7, 1.0],
-          ),
-        ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              children: [
-                const Spacer(flex: 2),
-
-                // Logo et titre animés
-                _buildHeader(),
-
-                const Spacer(flex: 2),
-
-                // Formulaire
-                _buildForm(),
-
-                const Spacer(flex: 1),
-
-                // Bouton de soumission
-                _buildSubmitButton(),
-
-                const Spacer(flex: 3),
+      body: GestureDetector(
+        onTap: () {
+          // Dismiss keyboard when tapping outside
+          FocusScope.of(context).unfocus();
+        },
+        child: Container(
+          width: size.width,
+          height: size.height,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                const Color(0xFF1E3C72),
+                const Color(0xFF2A5298),
+                const Color(0xFF1E3C72),
+                const Color(0xFF4A90E2),
               ],
+              stops: const [0.0, 0.3, 0.7, 1.0],
+            ),
+          ),
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                children: [
+                  const Spacer(flex: 2),
+
+                  // Logo et titre animés
+                  _buildHeader(),
+
+                  const Spacer(flex: 2),
+
+                  // Formulaire
+                  _buildForm(),
+
+                  const Spacer(flex: 1),
+
+                  // Bouton de soumission
+                  _buildSubmitButton(),
+
+                  const Spacer(flex: 3),
+                ],
+              ),
             ),
           ),
         ),
@@ -213,6 +249,8 @@ class _UserOnboardingPageState extends State<UserOnboardingPage>
             fontWeight: FontWeight.bold,
           ),
           textAlign: TextAlign.center,
+          textInputAction: TextInputAction.done,
+          onFieldSubmitted: (_) => _submitName(),
           decoration: InputDecoration(
             hintText: 'Votre prénom...',
             hintStyle: TextStyle(
