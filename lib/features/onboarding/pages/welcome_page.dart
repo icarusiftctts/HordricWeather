@@ -421,24 +421,47 @@ class _WelcomeState extends State<Welcome> with TickerProviderStateMixin {
           ? FloatingActionButton.extended(
               backgroundColor: myConstant.primaryColor,
               onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        const Home(),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      return SlideTransition(
-                        position: animation.drive(
-                          Tween(
-                              begin: const Offset(1.0, 0.0), end: Offset.zero),
-                        ),
-                        child: FadeTransition(opacity: animation, child: child),
-                      );
-                    },
-                    transitionDuration: const Duration(milliseconds: 600),
-                  ),
-                );
+                // If only one city is selected, navigate directly to it
+                if (selectedCities.length == 1) {
+                  Navigator.pushReplacement(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          Home(selectedCity: selectedCities.first),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        return SlideTransition(
+                          position: animation.drive(
+                            Tween(
+                                begin: const Offset(1.0, 0.0), end: Offset.zero),
+                          ),
+                          child: FadeTransition(opacity: animation, child: child),
+                        );
+                      },
+                      transitionDuration: const Duration(milliseconds: 600),
+                    ),
+                  );
+                } else {
+                  // If multiple cities selected, go to default home with city list
+                  Navigator.pushReplacement(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          const Home(),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        return SlideTransition(
+                          position: animation.drive(
+                            Tween(
+                                begin: const Offset(1.0, 0.0), end: Offset.zero),
+                          ),
+                          child: FadeTransition(opacity: animation, child: child),
+                        );
+                      },
+                      transitionDuration: const Duration(milliseconds: 600),
+                    ),
+                  );
+                }
               },
               icon: const Icon(Icons.arrow_forward, color: Colors.white),
               label: Text(
