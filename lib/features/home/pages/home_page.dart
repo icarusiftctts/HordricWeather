@@ -60,6 +60,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   List<City> selectedCities = [];
   List<Map<String, dynamic>> consolidatedWeatherList = [];
   Map<String, dynamic>? currentWeatherData;
+  Map<String, Map<String, dynamic>> citiesWeatherData = {}; // Store weather for each selected city
 
   bool isLoading = true;
   bool isLocationEnabled = false;
@@ -95,7 +96,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
     // Si une ville spécifique est sélectionnée
     if (widget.selectedCity != null) {
-      await _fetchWeatherForCity(widget.selectedCity!);
+      await _fetchWeatherForSpecificCity(widget.selectedCity!);
       return;
     }
 
@@ -110,6 +111,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
     await _checkLocationPermission();
     await _getCurrentLocationWeather();
+    
+    // Fetch weather for all selected cities
+    await _fetchWeatherForAllSelectedCities();
   }
 
   Future<void> _processLocationWeatherData(
@@ -158,23 +162,28 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     }
   }
 
-  Future<void> _fetchWeatherForCity(City city) async {
+  Future<void> _fetchWeatherForSpecificCity(City city) async {
     setState(() {
       isLoading = true;
       errorMessage = '';
     });
 
     try {
-      final response = await http.get(
-        Uri.parse(
-          'https://api.openweathermap.org/data/2.5/weather?q=${city.city}&appid=$weatherApiKey&units=metric&lang=fr',
-        ),
-      );
+      // Use city coordinates if available, otherwise use city name
+      String apiUrl;
+      if (city.latitude != null && city.longitude != null) {
+        apiUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=${city.latitude}&lon=${city.longitude}&appid=$weatherApiKey&units=metric&lang=fr';
+      } else {
+        apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=${city.city}&appid=$weatherApiKey&units=metric&lang=fr';
+      }
+
+      final response = await http.get(Uri.parse(apiUrl));
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
 
         setState(() {
+          currentWeatherData = data; // Store complete weather data
           location = city.city;
           temperature = data['main']['temp'].round();
           maxTemp = data['main']['temp_max'].round();
@@ -185,15 +194,21 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           feelsLike = data['main']['feels_like'].toDouble();
           weatherStateName = data['weather'][0]['description'];
 
-          String iconCode = data['weather'][0]['icon'];
-          imageUrl = 'http://openweathermap.org/img/wn/$iconCode@2x.png';
+          // Use local weather image instead of API icon
+          String weatherMain = data['weather'][0]['main'].toLowerCase();
+          imageUrl = _getWeatherImage(weatherMain);
 
           isLoading = false;
         });
 
+        // Also fetch forecast data for the city
+        if (city.latitude != null && city.longitude != null) {
+          await _fetchForecastData(city.latitude!, city.longitude!);
+        }
+
         _refreshController.forward();
 
-        // Programmer une notification météo
+        // Schedule weather notification
         await NotificationService.scheduleWeatherNotification(
           city.city,
           weatherStateName,
@@ -211,6 +226,24 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         errorMessage = 'Erreur réseau: $e';
         isLoading = false;
       });
+    }
+  }
+
+  Future<void> _fetchForecastData(double latitude, double longitude) async {
+    try {
+      final weatherUrl =
+          'https://api.openweathermap.org/data/2.5/forecast?lat=$latitude&lon=$longitude&appid=$weatherApiKey&units=metric&lang=fr';
+
+      final response = await http.get(Uri.parse(weatherUrl));
+
+      if (response.statusCode == 200) {
+        final forecastResult = json.decode(response.body);
+        if (forecastResult['list'] != null) {
+          _processForecastData(forecastResult['list']);
+        }
+      }
+    } catch (e) {
+      print('Erreur lors du chargement des prévisions: $e');
     }
   }
 
@@ -365,8 +398,38 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   Future<void> _refreshWeather() async {
     _refreshController.repeat();
     await _getCurrentLocationWeather();
+    await _fetchWeatherForAllSelectedCities();
     _refreshController.stop();
     _refreshController.reset();
+  }
+
+  Future<void> _fetchWeatherForAllSelectedCities() async {
+    for (City city in selectedCities) {
+      await _fetchWeatherDataForCity(city);
+    }
+  }
+
+  Future<void> _fetchWeatherDataForCity(City city) async {
+    try {
+      // Use city coordinates if available, otherwise use city name
+      String apiUrl;
+      if (city.latitude != null && city.longitude != null) {
+        apiUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=${city.latitude}&lon=${city.longitude}&appid=$weatherApiKey&units=metric&lang=fr';
+      } else {
+        apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=${city.city}&appid=$weatherApiKey&units=metric&lang=fr';
+      }
+
+      final response = await http.get(Uri.parse(apiUrl));
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        setState(() {
+          citiesWeatherData[city.city] = data;
+        });
+      }
+    } catch (e) {
+      print('Erreur lors du chargement des données météo pour ${city.city}: $e');
+    }
   }
 
   @override
@@ -1141,6 +1204,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   }
 
   Widget _buildCityWeatherCard(City city) {
+    final cityWeatherData = citiesWeatherData[city.city];
+    final temperature = cityWeatherData != null ? 
+        cityWeatherData['main']['temp'].round().toString() : '--';
+    final weatherMain = cityWeatherData != null ? 
+        cityWeatherData['weather'][0]['main'].toLowerCase() : 'clear';
+    final weatherIcon = _getWeatherImage(weatherMain);
+
     return Container(
       margin: const EdgeInsets.only(bottom: 15),
       padding: const EdgeInsets.all(20),
@@ -1149,44 +1219,79 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                city.city,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(20),
+          onTap: () async {
+            // Navigate to home page with selected city
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Home(
+                  selectedCity: city,
+                  currentLocationData: null,
                 ),
               ),
-              Text(
-                city.country,
-                style: TextStyle(
-                  color: Colors.white.withOpacity(0.7),
-                  fontSize: 14,
+            );
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      city.city,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      city.country,
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.7),
+                        fontSize: 14,
+                      ),
+                    ),
+                    if (cityWeatherData != null)
+                      Text(
+                        cityWeatherData['weather'][0]['description'],
+                        style: TextStyle(
+                          color: Colors.white.withOpacity(0.6),
+                          fontSize: 12,
+                        ),
+                      ),
+                  ],
                 ),
+              ),
+              Row(
+                children: [
+                  Image.asset(
+                    'assets/$weatherIcon.png',
+                    width: 32,
+                    height: 32,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Icon(Icons.wb_sunny, color: Colors.white, size: 32);
+                    },
+                  ),
+                  const SizedBox(width: 10),
+                  Text(
+                    '${temperature}°',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-          Row(
-            children: [
-              Image.asset('assets/clear.png', width: 32, height: 32),
-              const SizedBox(width: 10),
-              Text(
-                '22°',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        ],
+        ),
       ),
     ).animate().fadeIn(duration: 600.ms).slideX(begin: 0.3);
   }
