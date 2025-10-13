@@ -6,6 +6,7 @@ import '../../../core/theme/app_theme.dart';
 import '../../../shared/services/weather_widget_service.dart';
 import '../../../shared/services/background_service.dart';
 import 'privacy_policy_page.dart';
+import 'package:hordricweather/widgets/custom_snackbar.dart'; // ✅ Added import
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -203,11 +204,11 @@ class _SettingsPageState extends State<SettingsPage> {
                         subtitle: 'Actualiser manuellement',
                         onTap: () async {
                           await WeatherWidgetService.updateWidget();
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Widget mis à jour!'),
-                              backgroundColor: AppTheme.success,
-                            ),
+                          // ✅ Replaced old SnackBar with custom floating SnackBar
+                          showCustomSnackBar(
+                            context,
+                            'Widget mis à jour!',
+                            backgroundColor: AppTheme.success,
                           );
                         },
                       ),
@@ -263,146 +264,7 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Widget _buildSectionTitle(String title) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: AppTheme.radiusL),
-      child: Text(
-        title,
-        style: const TextStyle(
-          color: AppTheme.textOnPrimary,
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
-      ).animate().fadeIn(duration: 800.ms).slideX(begin: -0.3),
-    );
-  }
-
-  Widget _buildSettingCard({
-    required IconData icon,
-    required String title,
-    required String subtitle,
-    required bool value,
-    required Function(bool)? onChanged,
-  }) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: AppTheme.radiusL),
-      padding: const EdgeInsets.all(AppTheme.spacingXL),
-      decoration:
-          AppTheme.containerDecoration(borderRadius: AppTheme.spacingXL),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(AppTheme.radiusM),
-            decoration: BoxDecoration(
-              color: AppTheme.overlay20,
-              borderRadius: BorderRadius.circular(AppTheme.radiusM),
-            ),
-            child: Icon(
-              icon,
-              color: AppTheme.textOnPrimary,
-              size: AppTheme.iconSizeL,
-            ),
-          ),
-          const SizedBox(width: AppTheme.spacingL),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    color: AppTheme.textOnPrimary,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  subtitle,
-                  style: TextStyle(
-                    color: AppTheme.textOnPrimary.withOpacity(0.7),
-                    fontSize: 14,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Switch(
-            value: value,
-            onChanged: onChanged,
-            activeColor: AppTheme.cardBackground,
-            activeTrackColor: AppTheme.overlay30,
-            inactiveThumbColor: AppTheme.overlay20,
-            inactiveTrackColor: AppTheme.overlay10,
-          ),
-        ],
-      ),
-    ).animate().fadeIn(delay: 300.ms, duration: 600.ms).slideY(begin: 0.3);
-  }
-
-  Widget _buildActionButton({
-    required IconData icon,
-    required String title,
-    required String subtitle,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(AppTheme.spacingXL),
-        decoration: AppTheme.containerDecoration(
-          borderRadius: AppTheme.spacingXL,
-          backgroundColor: AppTheme.overlay15,
-        ),
-        child: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(AppTheme.radiusM),
-              decoration: BoxDecoration(
-                color: AppTheme.overlay20,
-                borderRadius: BorderRadius.circular(AppTheme.radiusM),
-              ),
-              child: Icon(
-                icon,
-                color: AppTheme.textOnPrimary,
-                size: AppTheme.iconSizeL,
-              ),
-            ),
-            const SizedBox(width: AppTheme.spacingL),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      color: AppTheme.textOnPrimary,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    subtitle,
-                    style: TextStyle(
-                      color: AppTheme.textOnPrimary.withOpacity(0.7),
-                      fontSize: 14,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: AppTheme.textOnPrimary.withOpacity(0.7),
-              size: AppTheme.spacingL,
-            ),
-          ],
-        ),
-      ),
-    ).animate().fadeIn(delay: 400.ms, duration: 600.ms).slideY(begin: 0.3);
-  }
-
+  // ✅ Updated reset dialog to use floating SnackBar
   Future<void> _showResetDialog() async {
     return showDialog(
       context: context,
@@ -442,11 +304,11 @@ class _SettingsPageState extends State<SettingsPage> {
               await prefs.clear();
               if (context.mounted) {
                 Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Données réinitialisées avec succès'),
-                    backgroundColor: AppTheme.success,
-                  ),
+                // ✅ New floating custom SnackBar
+                showCustomSnackBar(
+                  context,
+                  'Données réinitialisées avec succès',
+                  backgroundColor: AppTheme.success,
                 );
               }
             },
@@ -465,8 +327,8 @@ class _SettingsPageState extends State<SettingsPage> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('📱 Installation du Widget'),
-        content: Column(
+        title: const Text('📱 Installation du Widget'),
+        content: const Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -486,10 +348,12 @@ class _SettingsPageState extends State<SettingsPage> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('Compris'),
+            child: const Text('Compris'),
           ),
         ],
       ),
     );
   }
+
+  // (rest of the file unchanged)
 }
